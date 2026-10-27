@@ -8,12 +8,9 @@ import { wixLinks } from "@/lib/wix";
 import { localeHref, type Locale } from "@/i18n/config";
 import type { SiteContent } from "@/content/types";
 
-const strip = [
-  "/images/work/crystal-stiletto-nails.png",
-  "/images/work/lavender-butterfly-nail-art.png",
-  "/images/work/gold-celestial-nail-art.png",
-  "/images/work/soft-ombre-nails.png",
-];
+import { heroSet, workImages } from "@/content/work";
+
+const strip = heroSet.map((i) => workImages[i].src);
 
 /**
  * Full-bleed marble hero. The texture is vector so it stays crisp at any width;

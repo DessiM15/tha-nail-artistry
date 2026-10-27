@@ -129,6 +129,10 @@ export const en: SiteContent = {
         "Lavender butterfly nail art with glitter and 3D flowers by a Tha Nail Artistry Academy artist",
         "Gold celestial French-tip nail art on a marble background by a Houston nail tech",
         "Soft pink ombré coffin nails with a shimmer finish, student work at a Houston nail school",
+        "Short square nails with neon yellow, green, blue and orange French tips, zebra print and 3D bow details by a Tha Nail Artistry Academy artist",
+        "Stiletto nails mixing olive chrome, black and white abstract art, leopard print, neon yellow and a crystal-covered accent nail",
+        "Square nails with neon pink, yellow and green abstract designs, silver swirls and lime stripes by a Houston nail artist",
+        "Hot pink stiletto nails with a crocodile-skin pattern and iridescent crystal accents on a white fur background",
       ],
     },
     intro: {

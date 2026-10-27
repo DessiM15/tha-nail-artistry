@@ -5,6 +5,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, WorkGallery } from "@/components/sections/Blocks";
+import { founderSet } from "@/content/work";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -55,7 +56,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
         </Container>
       </Section>
 
-      <WorkGallery alts={t.home.hero.imageAlts} kicker={t.home.gallery.kicker} heading={t.home.gallery.heading} compact />
+      <WorkGallery alts={t.home.hero.imageAlts} kicker={t.home.gallery.kicker} heading={t.home.gallery.heading} compact indices={founderSet} />
       <CTABand locale={locale} heading={t.home.closing.heading} primary={t.common.applyNow} secondary={t.common.bookTour} />
       <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
     </>

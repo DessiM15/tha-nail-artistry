@@ -10,6 +10,7 @@ import { localeHref, type Locale } from "@/i18n/config";
 import { business, enrollment } from "@/config/site";
 import { daysLabel, formatDate } from "@/lib/format";
 import { wixLinks } from "@/lib/wix";
+import { allSets, workImages } from "@/content/work";
 
 /* ---------- Feature grid (home "why us", tuition "what's included") ---------- */
 const featureIcons = [Users, Award, Clock, Briefcase, Layers, Heart];
@@ -234,14 +235,8 @@ export function CTABand({ locale, heading, text, primary, secondary, primaryHref
 }
 
 /* ---------- Work gallery ---------- */
-const work = [
-  { src: "/images/work/crystal-stiletto-nails.png", w: 456, h: 476 },
-  { src: "/images/work/lavender-butterfly-nail-art.png", w: 480, h: 480 },
-  { src: "/images/work/gold-celestial-nail-art.png", w: 480, h: 508 },
-  { src: "/images/work/soft-ombre-nails.png", w: 456, h: 464 },
-];
-
-export function WorkGallery({ alts, heading, kicker, cta, compact = false }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean }) {
+export function WorkGallery({ alts, heading, kicker, cta, compact = false, indices = allSets }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean; indices?: number[] }) {
+  const work = indices.map((i) => ({ i, ...workImages[i] }));
   return (
     <Section tone="white" size={compact ? "sm" : "md"} labelledBy="gallery-heading">
       <Container>
@@ -256,9 +251,9 @@ export function WorkGallery({ alts, heading, kicker, cta, compact = false }: { a
         )}
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {work.map((img, i) => (
-            <Reveal as="li" key={img.src} delay={i * 70} className={i % 2 === 1 ? "lg:translate-y-10" : ""}>
+            <Reveal as="li" key={img.src} delay={(i % 4) * 70} className={i % 2 === 1 ? "lg:translate-y-10" : ""}>
               <div className={`relative overflow-hidden ${i % 2 === 0 ? "arch" : "rounded-3xl"} aspect-[4/5]`}>
-                <Image src={img.src} alt={alts[i] ?? ""} fill className="object-cover transition-transform duration-700 ease-out-expo hover:scale-[1.04]" sizes="(min-width: 1024px) 25vw, 50vw" />
+                <Image src={img.src} alt={alts[img.i] ?? ""} fill className="object-cover transition-transform duration-700 ease-out-expo hover:scale-[1.04]" sizes="(min-width: 1024px) 25vw, 50vw" />
               </div>
             </Reveal>
           ))}

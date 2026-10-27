@@ -129,6 +129,10 @@ export const es: SiteContent = {
         "Arte de uñas lavanda con mariposa, brillos y flores 3D por una artista de Tha Nail Artistry Academy",
         "Arte de uñas francés dorado con motivos celestiales sobre fondo de mármol, por una manicurista de Houston",
         "Uñas coffin con degradado rosa suave y acabado brillante, trabajo de estudiante en una escuela de uñas de Houston",
+        "Uñas cuadradas cortas con puntas francesas en amarillo, verde, azul y naranja neón, estampado de cebra y moños 3D, por una artista de Tha Nail Artistry Academy",
+        "Uñas stiletto con cromo oliva, arte abstracto en blanco y negro, estampado de leopardo, amarillo neón y una uña de acento cubierta de cristales",
+        "Uñas cuadradas con diseños abstractos en rosa, amarillo y verde neón, espirales plateadas y rayas verde lima, por una artista de uñas de Houston",
+        "Uñas stiletto rosa fuerte con patrón de piel de cocodrilo y cristales iridiscentes sobre un fondo de pelo blanco",
       ],
     },
     intro: {

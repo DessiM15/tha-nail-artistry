@@ -5,6 +5,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { business } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, WorkGallery } from "@/components/sections/Blocks";
+import { founderSet } from "@/content/work";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -47,7 +48,7 @@ export default async function FounderPage({ params }: PageProps<"/[locale]/found
         </Container>
       </Section>
 
-      <WorkGallery alts={t.home.hero.imageAlts} kicker={p.name} heading={p.workHeading} cta={t.home.gallery.cta} compact />
+      <WorkGallery alts={t.home.hero.imageAlts} kicker={p.name} heading={p.workHeading} cta={t.home.gallery.cta} compact indices={founderSet} />
 
       <Section tone="marble" size="sm">
         <Container className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
