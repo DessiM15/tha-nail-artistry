@@ -166,6 +166,10 @@ export interface SiteContent {
     heroStyleLabel: string;
     heroMarble: string;
     heroMontage: string;
+    heroSlideshow: string;
+    pauseSlideshow: string;
+    playSlideshow: string;
+    slideOf: string;
     readFullStory: string;
     placeholderNote: string;
     designedBy: string;

@@ -45,7 +45,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
                       </div>
                       <div className="flex flex-1 flex-col p-5">
                         <h3 className="t-h4">{s.name}</h3>
-                        <p className="mt-0.5 text-[0.8rem] text-black/55">{s.duration}</p>
+                        <p className="mt-0.5 text-[0.8rem] text-black/65">{s.duration}</p>
                         <p className="t-body mt-2 flex-1 text-black/70">{s.description}</p>
                         <div className="mt-4"><Button href={wixLinks.service(s.slug)} size="sm" external title={t.common.opensWix}>{t.common.bookNow}</Button></div>
                       </div>

@@ -30,7 +30,7 @@ export default async function FriendsFamilyPage({ params }: PageProps<"/[locale]
           <ul className="mt-6 divide-y divide-black/10 border-y border-black/10">
             {picks.map((s) => (
               <li key={s.slug} className="grid gap-3 py-5 sm:grid-cols-12 sm:items-center">
-                <div className="sm:col-span-7"><h3 className="t-h4">{s.name}</h3><p className="text-[0.85rem] text-black/55">{s.duration}</p></div>
+                <div className="sm:col-span-7"><h3 className="t-h4">{s.name}</h3><p className="text-[0.85rem] text-black/65">{s.duration}</p></div>
                 <div className="flex items-center justify-between gap-4 sm:col-span-5 sm:justify-end"><span className="t-h4">{s.price}</span><Button href={wixLinks.service(s.slug)} size="sm" external title={t.common.opensWix}>{p.cta}</Button></div>
               </li>
             ))}

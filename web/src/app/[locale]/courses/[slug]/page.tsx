@@ -54,7 +54,7 @@ export default async function ProgramPage({ params }: PageProps<"/[locale]/cours
             <dl className="grid gap-px overflow-hidden rounded-3xl bg-black/10 ring-1 ring-black/10 sm:grid-cols-2 lg:grid-cols-4">
               {glance.map((g) => (
                 <div key={g.k} className="bg-white p-6">
-                  <dt className="t-eyebrow text-black/55">{g.k}</dt>
+                  <dt className="t-eyebrow text-black/65">{g.k}</dt>
                   <dd className="t-h4 mt-2">{g.v}</dd>
                 </div>
               ))}

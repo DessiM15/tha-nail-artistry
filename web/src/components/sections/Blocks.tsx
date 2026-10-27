@@ -66,7 +66,7 @@ export function ProgramCards({ locale, programs, t, compact = false }: { locale:
             </div>
             <h3 className="t-h3 mt-5">{p.name}</h3>
             <p className={`t-body mt-2 ${dark ? "text-white/75" : "text-black/70"}`}>{p.tagline}</p>
-            <p className={`mt-4 text-[0.85rem] ${dark ? "text-white/60" : "text-black/55"}`}>{p.lengthLabel} · {t.common.hybrid}</p>
+            <p className={`mt-4 text-[0.85rem] ${dark ? "text-white/60" : "text-black/65"}`}>{p.lengthLabel} · {t.common.hybrid}</p>
             {!compact && (
               <ul className="mt-6 space-y-2.5">
                 {p.highlights.map((h) => (

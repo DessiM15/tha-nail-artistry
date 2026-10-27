@@ -76,7 +76,7 @@ export default async function WorkshopPage({ params }: PageProps<"/[locale]/work
           <h2 id="other-workshops" className="t-h3">{wp.otherHeading}</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {others.map((o) => (
-              <li key={o.slug}><Link href={href(`/workshops/${o.slug}`)} className="block h-full rounded-2xl bg-white p-5 ring-1 ring-black/10 hover:ring-black/40"><span className="block font-semibold">{o.name}</span>{o.price && <span className="mt-1 block text-[0.85rem] text-black/55">{o.price}</span>}</Link></li>
+              <li key={o.slug}><Link href={href(`/workshops/${o.slug}`)} className="block h-full rounded-2xl bg-white p-5 ring-1 ring-black/10 hover:ring-black/40"><span className="block font-semibold">{o.name}</span>{o.price && <span className="mt-1 block text-[0.85rem] text-black/65">{o.price}</span>}</Link></li>
             ))}
           </ul>
         </Container>

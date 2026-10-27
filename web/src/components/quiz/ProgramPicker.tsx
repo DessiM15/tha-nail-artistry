@@ -56,7 +56,7 @@ export function ProgramPicker({ locale, quiz, programs }: { locale: Locale; quiz
       className="rounded-3xl bg-white p-6 ring-1 ring-black/10 sm:p-10"
       onSubmit={(e) => { e.preventDefault(); if (step < total - 1) setStep(step + 1); else setDone(true); }}
     >
-      <p className="t-eyebrow text-black/55">{fill(quiz.progress, { n: step + 1, total })}</p>
+      <p className="t-eyebrow text-black/65">{fill(quiz.progress, { n: step + 1, total })}</p>
       <div className="mt-3 flex gap-1.5" aria-hidden="true">
         {quiz.questions.map((_, i) => <span key={i} className={`h-1 flex-1 rounded-full ${i <= step ? "bg-black" : "bg-black/10"}`} />)}
       </div>

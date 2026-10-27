@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { HeroMontage } from "@/components/sections/HeroMontage";
+import { HeroSlideshow } from "@/components/sections/HeroSlideshow";
 import { HeroSwitch } from "@/components/sections/HeroSwitch";
 import { CTABand, FeatureGrid, FounderQuote, HoursBlock, Partners, ProgramCards, Reviews, WorkGallery } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
@@ -21,7 +22,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <Suspense fallback={<Hero locale={locale} t={t} />}>
-        <HeroSwitch marble={<Hero locale={locale} t={t} />} montage={<HeroMontage locale={locale} t={t} />} labels={{ title: t.common.heroStyleLabel, marble: t.common.heroMarble, montage: t.common.heroMontage }} basePath={href("/")} />
+        <HeroSwitch marble={<Hero locale={locale} t={t} />} montage={<HeroMontage locale={locale} t={t} />} slideshow={<HeroSlideshow locale={locale} t={t} />} labels={{ title: t.common.heroStyleLabel, marble: t.common.heroMarble, montage: t.common.heroMontage, slideshow: t.common.heroSlideshow }} basePath={href("/")} />
       </Suspense>
 
       <Section tone="white" labelledBy="intro-heading">

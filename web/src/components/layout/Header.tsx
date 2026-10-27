@@ -89,7 +89,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
                             aria-current={isActive(item.href) ? "page" : undefined}
                           >
                             <span className="block text-[0.9rem] font-semibold">{item.label}</span>
-                            {item.description && <span className="block text-[0.78rem] text-black/55">{item.description}</span>}
+                            {item.description && <span className="block text-[0.78rem] text-black/65">{item.description}</span>}
                           </Link>
                         </li>
                       ))}
