@@ -337,6 +337,9 @@ export interface SiteContent {
       intro: string;
       note: string;
       categories: Record<Service["category"], string>;
+      allLabel: string;
+      filterLabel: string;
+      countLabel: string;
       items: Service[];
       supervised: string;
       friendsFamilyCta: string;

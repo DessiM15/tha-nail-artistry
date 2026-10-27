@@ -752,6 +752,9 @@ export const en: SiteContent = {
         "We offer a range of nail services performed by students, but we ensure they are well prepared before hand. Our student services give future nail artists real-world experience while offering you quality treatments at reduced rates.",
       note: "Please keep in mind that these services may take longer than usual, so allow for more time if necessary.",
       categories: { repairs: "Repairs & Removals", manipedi: "Manicures & Pedicures", enhancements: "Nail Enhancements" },
+      allLabel: "All Services",
+      filterLabel: "Browse by service type",
+      countLabel: "{n} services",
       items: [
         { slug: "soak-off-removal", name: "Soak Off / Removal", price: "$10", duration: "1 hr", category: "repairs", description: "Gentle, damage-free removal of gel, dip or acrylic enhancements." , image: "/images/services/soak-off-removal.jpg", imageAlt: "Hands with foil wraps on the fingertips during a gel soak-off removal" },
         { slug: "nail-repair", name: "Nail Repair", price: "$5", duration: "30 min", category: "repairs", description: "Fix a broken or lifted nail and match it to your set." , image: "/images/services/nail-repair.jpg", imageAlt: "Gloved nail tech repairing a natural nail with a wooden stick and adhesive" },

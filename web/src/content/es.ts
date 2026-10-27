@@ -750,6 +750,9 @@ export const es: SiteContent = {
         "Ofrecemos una variedad de servicios de uñas realizados por estudiantes, y nos aseguramos de que estén bien preparadas de antemano. Nuestros servicios de estudiante dan a las futuras artistas experiencia real mientras tú recibes tratamientos de calidad a precio reducido.",
       note: "Ten en cuenta que estos servicios pueden tardar más de lo habitual, así que reserva tiempo adicional si es necesario.",
       categories: { repairs: "Reparaciones y retiros", manipedi: "Manicura y pedicura", enhancements: "Realces de uñas" },
+      allLabel: "Todos los servicios",
+      filterLabel: "Explora por tipo de servicio",
+      countLabel: "{n} servicios",
       items: [
         { slug: "soak-off-removal", name: "Retiro / Soak Off", price: "$10", duration: "1 h", category: "repairs", description: "Retiro suave y sin daño de gel, dip o acrílico." , image: "/images/services/soak-off-removal.jpg", imageAlt: "Manos con papel aluminio en las puntas de los dedos durante un retiro de gel" },
         { slug: "nail-repair", name: "Reparación de uña", price: "$5", duration: "30 min", category: "repairs", description: "Arreglamos una uña rota o levantada y la igualamos con tu set." , image: "/images/services/nail-repair.jpg", imageAlt: "Manicurista con guantes reparando una uña natural con un palito de madera y adhesivo" },
