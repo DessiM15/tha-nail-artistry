@@ -48,7 +48,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const t = getContent(locale);
 
   return (
-    <html lang={htmlLang[locale]} className={`${instrument.variable} ${manrope.variable} h-full antialiased`}>
+    <html lang={htmlLang[locale]} suppressHydrationWarning className={`${instrument.variable} ${manrope.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>

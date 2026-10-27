@@ -45,7 +45,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             </div>
             <div className="flex flex-wrap gap-3">
               <Button href={href("/courses")} variant="secondary">{h.programs.cta}</Button>
-              <Button href={href("/which-program")} variant="ghost">{h.programs.quizCta}</Button>
+              <Button href={href("/which-program")} variant="secondary">{h.programs.quizCta}</Button>
             </div>
           </Reveal>
           <div className="mt-12"><ProgramCards locale={locale} programs={t.pages.programs} t={t} /></div>
