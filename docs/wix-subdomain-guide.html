@@ -1,0 +1,235 @@
+<title>Wix Portal Setup Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: one centered column of numbered steps, each a white card on marble, brand lavender and lime as the only accents. */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --fg: #000000;
+    --muted: #4d4d4d;
+    --line: rgba(0,0,0,0.12);
+    --lav: #b0a1ea;
+    --lav-soft: rgba(176,161,234,0.18);
+    --lime: #c7f37d;
+    --lime-soft: rgba(199,243,125,0.28);
+    --ink-on-accent: #000000;
+    --display: "Instrument Serif", "Times New Roman", serif;
+    --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #0c0b10; --surface: #17161d; --fg: #ffffff; --muted: #b9b7c4; --line: rgba(255,255,255,0.14); --lav-soft: rgba(176,161,234,0.16); --lime-soft: rgba(199,243,125,0.14); color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #0c0b10; --surface: #17161d; --fg: #ffffff; --muted: #b9b7c4; --line: rgba(255,255,255,0.14); --lav-soft: rgba(176,161,234,0.16); --lime-soft: rgba(199,243,125,0.14); color-scheme: dark; }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); line-height: 1.6; }
+  .wrap { max-width: 46rem; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2.5rem 4rem; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.4rem, 1.6rem + 3.5vw, 4rem); }
+  h2 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem); }
+  h3 { font-size: 1.3rem; }
+  p { margin: 0; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 0.6rem; }
+  .eyebrow::before { content: ""; width: 1.25rem; height: 1px; background: var(--lav); }
+  .eyebrow::after { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--lime); }
+
+  .hero { position: relative; overflow: hidden; border-radius: 1.5rem; background: var(--lav-soft); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2.25rem; display: grid; gap: 1rem; }
+  @media (min-width: 40rem) { .hero { padding-inline: 2.25rem; } }
+  .hero svg { position: absolute; pointer-events: none; opacity: 0.55; }
+  .hero .b1 { right: -12%; top: -45%; width: 46%; min-width: 16rem; }
+  .hero .b2 { left: -10%; bottom: -55%; width: 38%; min-width: 13rem; }
+  .hero > * { position: relative; }
+  .lede { font-size: 1.1rem; color: var(--muted); max-width: 34rem; text-wrap: pretty; }
+  .pill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--fg); color: var(--bg); border-radius: 999px; padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 600; width: fit-content; }
+  .pill i { width: 8px; height: 8px; border-radius: 999px; background: var(--lime); }
+
+  .answer { margin-top: 1.5rem; border-radius: 1.25rem; background: var(--lime-soft); padding: 1.25rem 1.4rem; display: grid; gap: 0.5rem; }
+  .answer strong { font-family: var(--display); font-weight: 400; font-size: 1.5rem; }
+
+  .map { margin-top: 2.5rem; display: grid; gap: 0.75rem; }
+  .map-row { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (min-width: 34rem) { .map-row { grid-template-columns: 1fr 1fr; } }
+  .tile { border-radius: 1.25rem; padding: 1.1rem 1.25rem; display: grid; gap: 0.25rem; min-width: 0; }
+  .tile.new { background: var(--fg); color: var(--bg); }
+  .tile.wix { background: var(--surface); border: 1px solid var(--lav); }
+  .tile .k { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; opacity: 0.7; }
+  .tile .v { font-family: var(--display); font-size: 1.35rem; word-break: break-word; }
+  .tile .d { font-size: 0.85rem; opacity: 0.8; }
+
+  .steps { margin-top: 2.75rem; display: grid; gap: 1rem; counter-reset: step; }
+  .step { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 1.5rem; padding: 1.4rem 1.4rem 1.5rem; display: grid; gap: 0.75rem; min-width: 0; }
+  @media (min-width: 40rem) { .step { padding: 1.75rem 1.9rem; grid-template-columns: 3.25rem 1fr; column-gap: 1.25rem; } .step > * { grid-column: 2; } .step .num { grid-column: 1; grid-row: 1 / span 10; } }
+  .num { counter-increment: step; width: 3.25rem; height: 3.25rem; border-radius: 999px; background: var(--lime); color: var(--ink-on-accent); display: grid; place-items: center; font-family: var(--display); font-size: 1.5rem; }
+  .num::before { content: counter(step, decimal-leading-zero); }
+  .step.lav .num { background: var(--lav); }
+  .who { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+  .step p, .step li { color: var(--fg); text-wrap: pretty; }
+  .step ol, .step ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+  .path { display: inline-block; background: var(--lav-soft); border-radius: 0.5rem; padding: 0.1rem 0.5rem; font-weight: 600; font-size: 0.92em; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+  .tbl { overflow-x: auto; border-radius: 1rem; border: 1px solid var(--line); }
+  th, td { text-align: left; padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: var(--lav-soft); }
+  tr:last-child td { border-bottom: 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--lav-soft); border-radius: 0.4rem; padding: 0.1rem 0.4rem; }
+  .copy { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 0.2rem 0.65rem; font: 600 0.75rem var(--body); cursor: pointer; margin-left: 0.4rem; vertical-align: middle; }
+  .copy:hover { background: var(--lime); color: #000; border-color: var(--lime); }
+  .copy:focus-visible, .check:focus-visible { outline: 3px solid var(--lav); outline-offset: 2px; }
+  .note { border-left: 3px solid var(--lime); padding-left: 0.9rem; color: var(--muted); font-size: 0.92rem; }
+  .wait { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--lime-soft); border-radius: 999px; padding: 0.35rem 0.8rem; font-size: 0.8rem; font-weight: 600; }
+
+  .faq { margin-top: 2.75rem; display: grid; gap: 0.5rem; }
+  details { border-top: 1px solid var(--line); padding: 0.9rem 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-family: var(--display); font-size: 1.25rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: var(--body); width: 1.8rem; height: 1.8rem; border-radius: 999px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 1rem; flex: 0 0 auto; }
+  details[open] summary::after { content: "–"; background: var(--lav); border-color: var(--lav); color: #000; }
+  details p { margin-top: 0.6rem; color: var(--muted); }
+
+  .checklist { margin-top: 2.75rem; background: var(--fg); color: var(--bg); border-radius: 1.5rem; padding: 1.75rem 1.5rem; display: grid; gap: 1rem; }
+  .checklist h2 { color: var(--bg); }
+  .checklist label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; }
+  .check { width: 1.25rem; height: 1.25rem; margin-top: 0.2rem; accent-color: var(--lime); flex: 0 0 auto; }
+  .checklist small { color: var(--bg); opacity: 0.6; }
+  footer { margin-top: 2.5rem; font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
+  footer a { color: inherit; }
+  @media (prefers-reduced-motion: no-preference) { .copy { transition: background 0.2s, color 0.2s; } }
+</style>
+
+<main class="wrap">
+  <section class="hero">
+    <svg class="b1" viewBox="0 0 400 400" aria-hidden="true"><path fill="#c7f37d" d="M120 60c62-32 142-10 170 48 24 50-4 96 20 146 22 46-12 102-66 108-58 6-96-40-150-56C40 290 6 236 20 184c12-46 50-96 100-124Z"/></svg>
+    <svg class="b2" viewBox="0 0 400 400" aria-hidden="true"><path fill="#b0a1ea" d="M58 142c20-62 96-96 158-78 50 15 60 72 108 98 48 25 54 92 12 126-44 36-124 20-176 46-56 28-124 6-142-50-16-52 24-90 40-142Z"/></svg>
+    <span class="pill"><i></i>Tha Nail Artistry Academy · New website launch</span>
+    <h1>Keeping your Wix portal alive when the new site goes live</h1>
+    <p class="lede">Your students keep logging in, paying and booking exactly where they do now. The new website just needs the front door, and Wix moves to a side entrance called <strong>portal.thanailartistry.com</strong>.</p>
+  </section>
+
+  <div class="answer">
+    <p class="eyebrow">The question everyone asks</p>
+    <strong>Do I have to buy anything? No.</strong>
+    <p>A subdomain is a free label on a domain you already own. <code>portal.thanailartistry.com</code> costs $0 and takes about 20 minutes of clicking. You do not buy a new domain, a new Wix plan, or anything else.</p>
+  </div>
+
+  <div class="map">
+    <p class="eyebrow">What goes where</p>
+    <div class="map-row">
+      <div class="tile new"><span class="k">New website · public</span><span class="v">www.thanailartistry.com</span><span class="d">Home, programs, tuition, workshops, services, Spanish version. Built by Smart Scale, hosted on Vercel.</span></div>
+      <div class="tile wix"><span class="k">Wix · back office</span><span class="v">portal.thanailartistry.com</span><span class="d">Student login, payment plans, applications, tour and workshop bookings, store and forms. Nothing changes inside.</span></div>
+    </div>
+  </div>
+
+  <section class="steps" aria-label="Steps">
+    <article class="step">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Find out who manages your domain</h2>
+      <span class="who">Gen · 2 minutes</span>
+      <p>Log in to Wix and open <span class="path">Settings</span> then <span class="path">Domains</span>. Look at <code>thanailartistry.com</code>.</p>
+      <ul>
+        <li>If it says the domain was <strong>purchased through Wix</strong>, you will do every DNS step inside Wix.</li>
+        <li>If it was <strong>connected from GoDaddy, Namecheap, Google or another registrar</strong>, DNS lives there. Same steps, different login.</li>
+      </ul>
+      <p class="note">Menu wording in Wix changes from time to time. If a label looks slightly different, look for the same idea.</p>
+    </article>
+
+    <article class="step lav">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Create the subdomain and point it at your Wix site</h2>
+      <span class="who">Gen · 5 minutes</span>
+      <p><strong>Domain bought through Wix:</strong></p>
+      <ol>
+        <li>In <span class="path">Settings</span> › <span class="path">Domains</span>, open the menu next to <code>thanailartistry.com</code> and choose the option to <strong>add or manage subdomains</strong>.</li>
+        <li>Type <code>portal</code><button class="copy" type="button" data-copy="portal">Copy</button> and assign it to this Wix site.</li>
+      </ol>
+      <p><strong>Domain managed at a registrar:</strong></p>
+      <ol>
+        <li>In Wix, choose <strong>Connect a domain you already own</strong> and enter <code>portal.thanailartistry.com</code><button class="copy" type="button" data-copy="portal.thanailartistry.com">Copy</button>.</li>
+        <li>Wix shows you a <strong>CNAME</strong> value. Add this record at your registrar:</li>
+      </ol>
+      <div class="tbl"><table>
+        <thead><tr><th>Type</th><th>Host / Name</th><th>Value</th></tr></thead>
+        <tbody><tr><td>CNAME</td><td>portal</td><td>the value Wix shows you</td></tr></tbody>
+      </table></div>
+      <span class="wait">Wait: a few minutes to 24 hours for Wix to show it as connected</span>
+    </article>
+
+    <article class="step">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Make the portal address the primary one in Wix</h2>
+      <span class="who">Gen · 1 minute</span>
+      <p>Once it shows as connected, set <code>portal.thanailartistry.com</code> as the <strong>primary domain</strong> for the Wix site. Keep <code>www</code> attached for now. We only remove it after the new site is live, so students never see a gap.</p>
+    </article>
+
+    <article class="step lav">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Point the main domain at the new website</h2>
+      <span class="who">Gen with Smart Scale on the phone · 5 minutes</span>
+      <p>In the same DNS manager from step 1, add or edit these two records. Smart Scale will confirm both values on launch day.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Type</th><th>Host / Name</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>@</td><td><code>76.76.21.21</code><button class="copy" type="button" data-copy="76.76.21.21">Copy</button></td></tr>
+          <tr><td>CNAME</td><td>www</td><td><code>cname.vercel-dns.com</code><button class="copy" type="button" data-copy="cname.vercel-dns.com">Copy</button></td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">If Wix manages your DNS and will not let <code>www</code> point away from Wix, the cleanest fix is to move DNS management to the registrar or to Vercel. Smart Scale will walk you through that call.</p>
+    </article>
+
+    <article class="step">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Remove www from the Wix site</h2>
+      <span class="who">Gen · 1 minute · after the new site loads</span>
+      <p>Open <code>www.thanailartistry.com</code> in a private window. When the new site appears, go back to <span class="path">Settings</span> › <span class="path">Domains</span> and <strong>disconnect</strong> <code>www.thanailartistry.com</code> from the Wix site. Wix keeps working at the portal address.</p>
+    </article>
+
+    <article class="step lav">
+      <span class="num" aria-hidden="true"></span>
+      <h2>Smart Scale flips one switch</h2>
+      <span class="who">Smart Scale · 1 minute</span>
+      <p>Every link on the new site that goes into Wix (Apply, Student Login, Book a Tour, workshops, services, the store) is built from a single setting. We change it to <code>https://portal.thanailartistry.com</code>, redeploy, and every link updates at once.</p>
+    </article>
+  </section>
+
+  <section class="faq" aria-label="Questions">
+    <p class="eyebrow">Good to know</p>
+    <details><summary>Will students have to make new accounts?</summary><p>No. Accounts, payment plans, bookings and history all live in Wix and stay exactly as they are. Only the web address of the portal changes.</p></details>
+    <details><summary>What if a student has the old www login link bookmarked?</summary><p>It lands on the new website, where the Student Login button in the header and footer takes them straight to the portal. Smart Scale can also add a redirect for the old account page.</p></details>
+    <details><summary>Does my Wix plan change?</summary><p>No. You keep the same plan, the same apps and the same billing. The only Wix setting that changes is which address the site answers to.</p></details>
+    <details><summary>Can I keep editing Wix pages?</summary><p>Yes. Bookings, store items, forms and prices still get edited in Wix. The new site links to those pages by their address, so keep the page URLs the same when you edit them.</p></details>
+    <details><summary>What is DNS, in plain words?</summary><p>DNS is the address book for your domain. Each record says "this name goes to this place." We are adding one line for the portal and changing two lines for www and the root domain. Nothing else is touched.</p></details>
+  </section>
+
+  <section class="checklist" aria-label="Checklist">
+    <p class="eyebrow" style="color:#fff">Launch day checklist</p>
+    <h2>Tick these off together</h2>
+    <label><input class="check" type="checkbox" id="c1"> <span>Subdomain <code>portal</code> created and showing as connected in Wix</span></label>
+    <label><input class="check" type="checkbox" id="c2"> <span>Portal set as the primary domain for the Wix site</span></label>
+    <label><input class="check" type="checkbox" id="c3"> <span>A record and www CNAME pointed at Vercel</span></label>
+    <label><input class="check" type="checkbox" id="c4"> <span>New site loads at www.thanailartistry.com</span></label>
+    <label><input class="check" type="checkbox" id="c5"> <span>www disconnected from the Wix site</span></label>
+    <label><input class="check" type="checkbox" id="c6"> <span>Smart Scale updated the portal link setting and redeployed</span></label>
+    <label><input class="check" type="checkbox" id="c7"> <span>Test: log in as a student, book a tour, open the store</span></label>
+    <small>Checkmarks save only on this device.</small>
+  </section>
+
+  <footer>
+    <span>Prepared for Gen Henriquez · Tha Nail Artistry Academy</span>
+    <span>Website by <a href="https://smartscaleagent.com/portfolio">Smart Scale LLC</a></span>
+  </footer>
+</main>
+
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy");
+      var done = function () { var old = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = old; }, 1400); };
+      try { navigator.clipboard.writeText(text).then(done).catch(function () { fallback(); }); } catch (e) { fallback(); }
+      function fallback() { var r = document.createRange(); var code = btn.previousElementSibling; if (code) { r.selectNodeContents(code); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } }
+    });
+  });
+  document.querySelectorAll(".check").forEach(function (box) {
+    try { box.checked = localStorage.getItem("tnaa-" + box.id) === "1"; } catch (e) {}
+    box.addEventListener("change", function () { try { localStorage.setItem("tnaa-" + box.id, box.checked ? "1" : "0"); } catch (e) {} });
+  });
+</script>
