@@ -6,7 +6,9 @@ import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, FeatureGrid, HoursBlock } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
+import { Strip } from "@/components/ui/Strip";
 import { Reveal } from "@/components/ui/Reveal";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/book-a-tour">): Promise<Metadata> {
@@ -21,7 +23,7 @@ export default async function TourPage({ params }: PageProps<"/[locale]/book-a-t
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/book-a-tour" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} image={{ src: "/images/campus/graduates.jpg", alt: "Smiling Tha Nail Artistry Academy graduates in purple caps and gowns at their Houston graduation ceremony", priority: true }} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} image={{ src: "/images/facility/lobby-reception.jpg", alt: p.heroAlt, priority: true, landscape: true }} />
 
       <Section tone="white" labelledBy="tour-options">
         <Container>
@@ -39,7 +41,25 @@ export default async function TourPage({ params }: PageProps<"/[locale]/book-a-t
         </Container>
       </Section>
 
-      <Section tone="marble" labelledBy="know-heading">
+      <Section tone="white" labelledBy="facility-heading">
+        <Container>
+          <Reveal className="mb-8">
+            <Eyebrow>{p.facilityKicker}</Eyebrow>
+            <h2 id="facility-heading" className="t-h2 mt-3">{p.facilityHeading}</h2>
+          </Reveal>
+          <Strip ariaLabel={p.facilityHeading} prevLabel={t.common.prev} nextLabel={t.common.next}>
+            {p.facility.map((f, i) => (
+              <li key={f.src} className={i === 0 ? "w-[min(85vw,34rem)]" : "w-[min(70vw,20rem)]"}>
+                <div className={`relative overflow-hidden rounded-3xl ${i === 0 ? "aspect-[3/2]" : "aspect-[3/4]"} h-[22rem] sm:h-[26rem]`}>
+                  <Image src={f.src} alt={f.alt} fill className="object-cover" sizes="(min-width:640px) 544px, 85vw" />
+                </div>
+              </li>
+            ))}
+          </Strip>
+        </Container>
+      </Section>
+
+      <Section tone="lavenderTint" labelledBy="know-heading">
         <Container>
           <Reveal className="max-w-2xl"><h2 id="know-heading" className="t-h2">{p.knowHeading}</h2></Reveal>
           <div className="mt-10"><FeatureGrid items={p.know} /></div>

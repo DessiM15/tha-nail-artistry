@@ -6,6 +6,7 @@ import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, WorkGallery } from "@/components/sections/Blocks";
 import { founderSet } from "@/content/work";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -35,17 +36,18 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
             {cats.map((cat) => (
               <section key={cat} aria-labelledby={`cat-${cat}`}>
                 <Reveal><h2 id={`cat-${cat}`} className="t-h3">{p.categories[cat]}</h2></Reveal>
-                <ul className="mt-6 divide-y divide-black/10 border-y border-black/10">
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {p.items.filter((s) => s.category === cat).map((s, i) => (
-                    <Reveal as="li" key={s.slug} delay={i * 40} className="grid gap-3 py-5 sm:grid-cols-12 sm:items-center sm:gap-6">
-                      <div className="sm:col-span-7">
-                        <h3 className="t-h4">{s.name}</h3>
-                        <p className="t-body mt-1 text-black/65">{s.description}</p>
+                    <Reveal as="li" key={s.slug} delay={(i % 3) * 60} className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-lavender">
+                      <div className="relative aspect-[5/4]">
+                        <Image src={s.image} alt={s.imageAlt} fill className="object-cover" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+                        <span className="absolute left-4 top-4 rounded-full bg-lime px-3 py-1 text-[0.8rem] font-semibold text-black">{s.price}</span>
                       </div>
-                      <p className="text-[0.85rem] text-black/55 sm:col-span-2">{s.duration}</p>
-                      <div className="flex items-center justify-between gap-4 sm:col-span-3 sm:justify-end">
-                        <span className="t-h4">{s.price}</span>
-                        <Button href={wixLinks.service(s.slug)} size="sm" external title={t.common.opensWix}>{t.common.bookNow}</Button>
+                      <div className="flex flex-1 flex-col p-5">
+                        <h3 className="t-h4">{s.name}</h3>
+                        <p className="mt-0.5 text-[0.8rem] text-black/55">{s.duration}</p>
+                        <p className="t-body mt-2 flex-1 text-black/70">{s.description}</p>
+                        <div className="mt-4"><Button href={wixLinks.service(s.slug)} size="sm" external title={t.common.opensWix}>{t.common.bookNow}</Button></div>
                       </div>
                     </Reveal>
                   ))}
@@ -56,7 +58,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
         </Container>
       </Section>
 
-      <WorkGallery alts={t.home.hero.imageAlts} kicker={t.home.gallery.kicker} heading={t.home.gallery.heading} compact indices={founderSet} />
+      <WorkGallery alts={t.home.hero.imageAlts} kicker={t.home.gallery.kicker} heading={t.home.gallery.heading} compact indices={founderSet} prevLabel={t.common.prev} nextLabel={t.common.next} />
       <CTABand locale={locale} heading={t.home.closing.heading} primary={t.common.applyNow} secondary={t.common.bookTour} />
       <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
     </>

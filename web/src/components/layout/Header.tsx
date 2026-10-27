@@ -123,7 +123,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
           <a href={loginHref} className="hidden items-center whitespace-nowrap rounded-full px-3 py-2 text-[0.85rem] font-semibold text-black/70 hover:bg-black/5 2xl:inline-flex" title={common.opensWix}>
             {common.login}
           </a>
-          <a href={applyHref} className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-black px-4 py-2.5 text-[0.85rem] font-semibold text-white transition-colors hover:bg-black/85 sm:inline-flex" title={common.opensWix}>
+          <a href={applyHref} className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lavender px-4 py-2.5 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime sm:inline-flex" title={common.opensWix}>
             {common.applyNow}
             <ArrowUpRight width={14} height={14} />
           </a>
@@ -180,7 +180,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
             )}
           </ul>
           <div className="mt-6 grid gap-3">
-            <a href={applyHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-5 py-3.5 font-semibold text-white">{common.applyNow}<ArrowUpRight width={16} height={16} /></a>
+            <a href={applyHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-lavender px-5 py-3.5 font-semibold text-black">{common.applyNow}<ArrowUpRight width={16} height={16} /></a>
             <Link href={localeHref(locale, "/book-a-tour")} className="inline-flex items-center justify-center rounded-full px-5 py-3.5 font-semibold ring-1 ring-black/20">{common.bookTour}</Link>
             <a href={loginHref} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-[0.9rem] font-semibold text-black/70">{common.login}</a>
           </div>

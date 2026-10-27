@@ -9,7 +9,7 @@ export function MobileCallBar({ common, applyHref }: { common: SiteContent["comm
       <div className="grid grid-cols-3 gap-2 px-3 py-2">
         <a href={business.phoneHref} className="inline-flex items-center justify-center gap-1.5 rounded-full py-3 text-[0.85rem] font-semibold ring-1 ring-black/15"><Phone width={16} height={16} />{common.callUs}</a>
         <a href={business.smsHref} className="inline-flex items-center justify-center gap-1.5 rounded-full py-3 text-[0.85rem] font-semibold ring-1 ring-black/15"><Mail width={16} height={16} />{common.textUs}</a>
-        <a href={applyHref} className="inline-flex items-center justify-center gap-1.5 rounded-full bg-black py-3 text-[0.85rem] font-semibold text-white">{common.applyNow}<ArrowUpRight width={14} height={14} /></a>
+        <a href={applyHref} className="inline-flex items-center justify-center gap-1.5 rounded-full bg-lavender py-3 text-[0.85rem] font-semibold text-black">{common.applyNow}<ArrowUpRight width={14} height={14} /></a>
       </div>
     </div>
   );

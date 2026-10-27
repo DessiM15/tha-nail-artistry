@@ -26,8 +26,8 @@
   --header-h: 4.5rem;
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --container: 84rem;
-  --section-y: clamp(4.5rem, 9vw, 9rem);
-  --section-y-sm: clamp(3rem, 6vw, 5.5rem);
+  --section-y: clamp(3rem, 5.5vw, 5rem);
+  --section-y-sm: clamp(2.25rem, 4vw, 3.5rem);
 }
 
 @media (min-width: 64rem) {
@@ -74,9 +74,9 @@ body {
 .section-sm { padding-block: var(--section-y-sm); }
 
 /* Fluid typography */
-.t-display { font-family: var(--font-display); font-weight: 400; line-height: 0.98; letter-spacing: -0.015em; font-size: clamp(2.75rem, 1.6rem + 5.2vw, 6.75rem); text-wrap: balance; }
+.t-display { font-family: var(--font-display); font-weight: 400; line-height: 0.98; letter-spacing: -0.015em; font-size: clamp(2.75rem, 1.5rem + 4.8vw, 6rem); text-wrap: balance; }
 .t-h1 { font-family: var(--font-display); font-weight: 400; line-height: 1.02; letter-spacing: -0.012em; font-size: clamp(2.5rem, 1.5rem + 4vw, 5.25rem); text-wrap: balance; }
-.t-h2 { font-family: var(--font-display); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.75rem); text-wrap: balance; }
+.t-h2 { font-family: var(--font-display); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem); text-wrap: balance; }
 .t-h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); text-wrap: balance; }
 .t-h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); }
 .t-lede { font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.3rem); line-height: 1.6; text-wrap: pretty; }
@@ -144,6 +144,14 @@ details.faq[open] .faq-icon { transform: rotate(45deg); }
   .marquee-track > [aria-hidden="true"] { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* Horizontal strips (gallery, reviews, facility) */
+.strip { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 0.5rem; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.strip::-webkit-scrollbar { display: none; }
+.strip > * { scroll-snap-align: start; flex: 0 0 auto; }
+
+/* Lobby-wall inspired shapes: soft lavender and lime blobs, decorative only */
+.blob { position: absolute; pointer-events: none; filter: blur(0.5px); }
 
 /* Safe-area for the sticky mobile bar */
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Container, Eyebrow } from "@/components/ui/Primitives";
+import { BrandBlobs, Container, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { localeHref, type Locale } from "@/i18n/config";
 
@@ -36,7 +36,7 @@ interface Props {
   h1: string;
   lede?: string;
   crumbs: Crumb[];
-  image?: { src: string; alt: string; priority?: boolean };
+  image?: { src: string; alt: string; priority?: boolean; landscape?: boolean };
   children?: ReactNode;
   tone?: "marble" | "black";
 }
@@ -46,7 +46,8 @@ export function PageHero({ locale, eyebrow, h1, lede, crumbs, image, children, t
   const dark = tone === "black";
   return (
     <section className={`${dark ? "on-dark bg-black text-white" : "bg-marble text-black"} relative overflow-hidden`}>
-      <Container className={`relative pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-12 ${image ? "grid items-end gap-10 lg:grid-cols-12" : ""}`}>
+      {!dark && <BrandBlobs variant="hero" opacity={0.38} />}
+      <Container className={`relative pb-12 pt-8 sm:pb-14 sm:pt-10 lg:pb-16 lg:pt-10 ${image ? "grid items-center gap-10 lg:grid-cols-12" : ""}`}>
         <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
           <Breadcrumbs locale={locale} crumbs={crumbs} tone={dark ? "light" : "dark"} />
           <div className="mt-8 sm:mt-10">
@@ -58,7 +59,7 @@ export function PageHero({ locale, eyebrow, h1, lede, crumbs, image, children, t
         </div>
         {image && (
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="arch relative aspect-[4/5] max-h-[28rem] w-full lg:max-h-none">
+            <div className={`relative w-full ${image.landscape ? "aspect-[4/3] overflow-hidden rounded-3xl" : "arch aspect-[4/5] max-h-[26rem] lg:max-h-none"}`}>
               <Image src={image.src} alt={image.alt} fill priority={image.priority} className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
           </Reveal>

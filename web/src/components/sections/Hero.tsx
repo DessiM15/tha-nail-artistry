@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Primitives";
+import { BrandBlobs, Container } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { enrollment } from "@/config/site";
 import { formatDate } from "@/lib/format";
@@ -22,11 +22,12 @@ export function Hero({ locale, t }: { locale: Locale; t: SiteContent }) {
   const c = t.common;
   return (
     <section className="bg-marble relative overflow-hidden" aria-labelledby="hero-heading">
-      <Container className="relative grid min-h-[calc(100svh-var(--header-h)-2.5rem)] items-center gap-10 py-14 lg:grid-cols-12 lg:gap-6 lg:py-20">
+      <BrandBlobs variant="hero" opacity={0.42} />
+      <Container className="relative grid min-h-[calc(100svh-var(--header-h)-2.5rem)] items-center gap-10 py-12 lg:grid-cols-12 lg:gap-6 lg:py-14">
         <div className="lg:col-span-7 xl:col-span-6">
           <Reveal>
-            <p className="inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-1.5 text-[0.75rem] font-semibold tracking-[0.06em] text-white">
-              <span aria-hidden="true" className="size-2 rounded-full bg-lime" />
+            <p className="inline-flex items-center gap-2.5 rounded-full bg-black px-5 py-2.5 text-[0.95rem] font-semibold tracking-[0.03em] text-white">
+              <span aria-hidden="true" className="size-2.5 rounded-full bg-lime" />
               {c.nowEnrolling} · {formatDate(enrollment.nextClassStart, locale, { month: "short", day: "numeric" })}
             </p>
           </Reveal>
@@ -44,10 +45,10 @@ export function Hero({ locale, t }: { locale: Locale; t: SiteContent }) {
             <Button href={localeHref(locale, "/courses")} variant="secondary" size="lg">{h.secondary}</Button>
           </Reveal>
           <Reveal delay={200}>
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[0.8rem] font-semibold text-black/60">
-              <li className="inline-flex items-center gap-2"><span aria-hidden="true" className="size-1.5 rounded-full bg-lavender" />TDLR</li>
-              <li className="inline-flex items-center gap-2"><span aria-hidden="true" className="size-1.5 rounded-full bg-lavender" />{c.paymentPlans}</li>
-              <li className="inline-flex items-center gap-2"><span aria-hidden="true" className="size-1.5 rounded-full bg-lavender" />{c.hablamos}</li>
+            <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-2 text-[1rem] font-semibold text-black/75">
+              <li className="inline-flex items-center gap-2.5"><span aria-hidden="true" className="size-2.5 rounded-full bg-lime ring-2 ring-black/10" />TDLR</li>
+              <li className="inline-flex items-center gap-2.5"><span aria-hidden="true" className="size-2.5 rounded-full bg-lavender" />{c.paymentPlans}</li>
+              <li className="inline-flex items-center gap-2.5"><span aria-hidden="true" className="size-2.5 rounded-full bg-lime ring-2 ring-black/10" />{c.hablamos}</li>
             </ul>
           </Reveal>
         </div>
@@ -55,8 +56,8 @@ export function Hero({ locale, t }: { locale: Locale; t: SiteContent }) {
         <div className="lg:col-span-5 xl:col-span-6">
           <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-2" aria-label={t.home.gallery.kicker}>
             {strip.map((src, i) => (
-              <Reveal as="li" key={src} delay={120 + i * 90} className={i % 2 === 1 ? "mt-8 sm:mt-12" : ""}>
-                <div className={`relative overflow-hidden ${i % 2 === 0 ? "arch" : "rounded-3xl"} aspect-[4/5] bg-black/5`}>
+              <Reveal as="li" key={src} delay={120 + i * 90} className={i % 2 === 1 ? "mt-8 sm:mt-10" : ""}>
+                <div className={`relative overflow-hidden ${i % 2 === 0 ? "arch" : "rounded-3xl"} aspect-[4/5] bg-black/5 lg:aspect-square`}>
                   <Image src={src} alt={h.imageAlts[i]} fill priority={i < 2} className="drift object-cover" sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 20vw, 45vw" />
                 </div>
               </Reveal>

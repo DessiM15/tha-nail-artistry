@@ -57,9 +57,15 @@ export const es: SiteContent = {
     sunday: "Domingo",
     partnersHeading: "Nuestras marcas aliadas",
     partnersKicker: "Entrenamos con productos profesionales",
-    reviewsKicker: "Reseñas de Google",
-    reviewsHeading: "Lo que dicen nuestras estudiantes y clientas",
+    reviewsKicker: "Desde Google",
+    reviewsHeading: "Reseñas de Estudiantes",
     reviewsMore: "Ver más en Google",
+    prev: "Retroceder",
+    next: "Avanzar",
+    heroStyleLabel: "Vista previa del hero",
+    heroMarble: "Mármol",
+    heroMontage: "Montaje",
+    readFullStory: "Lee la historia completa de Gen",
     placeholderNote: "Texto provisional. La academia enviará la versión final.",
     designedBy: "Sitio web diseñado por",
     allRights: "Todos los derechos reservados.",
@@ -200,6 +206,13 @@ export const es: SiteContent = {
       ],
       serving: "Atendemos con orgullo a Cypress · Jersey Village · Katy · Noroeste de Houston",
       cta: "Conoce a la fundadora",
+      founderKicker: "Conoce a la fundadora",
+      founderHeading: "Gen Henriquez",
+      founderText: [
+        "Después de obtener mi licencia de manicurista hace más de 6 años, me di cuenta rápido de algo que muchas futuras manicuristas viven: la escuela de uñas no me preparó para el mundo real. Aunque ya atendía clientas, la educación que recibí no fue suficiente para darme la confianza que necesitaba para crecer en mi negocio.",
+        "Por eso creé Tha Nail Artistry Academy. Al graduarte, no solo sales con una licencia, sino con las habilidades, la confianza y la capacidad de liderazgo para abrir tu propio negocio.",
+      ],
+      founderImageAlt: "Gen Henriquez con uniforme gris de instructora de Tha Nail Artistry Academy guiando las manos de una estudiante durante una clase práctica",
     },
     founder: {
       title: "Conoce a nuestra fundadora, Gen Henriquez",
@@ -575,6 +588,8 @@ export const es: SiteContent = {
       items: [
         {
           slug: "texas-manicurist-state-board-training",
+          image: "/images/workshops/texas-manicurist-state-board-training.jpg",
+          imageAlt: "Estudiantes presentando un examen escrito en un salón mientras una instructora observa",
           name: "Preparación para el examen estatal de manicurista de Texas",
           tagline: "Aprueba tu examen, lanza tu carrera",
           price: "Desde $350",
@@ -588,6 +603,8 @@ export const es: SiteContent = {
         },
         {
           slug: "business-development-workshops",
+          image: "/images/workshops/business-development-workshops.jpg",
+          imageAlt: "Profesional de uñas en el escritorio de su salón con una agenda, esmaltes y una laptop",
           name: "Talleres de desarrollo de negocio",
           price: "Desde $350",
           description:
@@ -598,6 +615,8 @@ export const es: SiteContent = {
         },
         {
           slug: "natural-nails-workshops",
+          image: "/images/workshops/natural-nails-workshops.jpg",
+          imageAlt: "Primer plano del trabajo de cutícula en una uña natural con alicate",
           name: "Talleres de uña natural",
           price: "Desde $350",
           description:
@@ -608,6 +627,8 @@ export const es: SiteContent = {
         },
         {
           slug: "pedicure-workshops",
+          image: "/images/workshops/pedicure-workshops.jpg",
+          imageAlt: "Manicurista con cubrebocas realizando una pedicura en una estación de salón",
           name: "Talleres de pedicura",
           price: "Desde $350",
           description:
@@ -618,6 +639,8 @@ export const es: SiteContent = {
         },
         {
           slug: "toenail-enhancement-workshops",
+          image: "/images/workshops/toenail-enhancement-workshops.jpg",
+          imageAlt: "Manos con guantes aplicando producto en una uña del pie",
           name: "Talleres de realce de uñas de pies",
           price: "$350",
           description:
@@ -628,6 +651,8 @@ export const es: SiteContent = {
         },
         {
           slug: "soft-gel-extensions-workshops",
+          image: "/images/workshops/soft-gel-extensions-workshops.jpg",
+          imageAlt: "Técnica abriendo frascos de gel para aplicar gel suave en las uñas de una clienta",
           name: "Talleres de extensiones de gel suave",
           price: "Desde $350",
           description:
@@ -638,6 +663,8 @@ export const es: SiteContent = {
         },
         {
           slug: "hard-gel-workshops",
+          image: "/images/workshops/hard-gel-workshops.jpg",
+          imageAlt: "Mano curándose bajo una lámpara UV LED para uñas",
           name: "Talleres de gel duro",
           price: "Desde $350",
           description:
@@ -648,6 +675,8 @@ export const es: SiteContent = {
         },
         {
           slug: "polygel-workshops",
+          image: "/images/workshops/polygel-workshops.jpg",
+          imageAlt: "Uñas cuadradas nude con espirales caramelo, perlas, cristales dorados y rosas blancas 3D",
           name: "Talleres de polygel",
           price: "Desde $350",
           description:
@@ -658,6 +687,8 @@ export const es: SiteContent = {
         },
         {
           slug: "acrylic-workshops",
+          image: "/images/workshops/acrylic-workshops.jpg",
+          imageAlt: "Uñas coffin rosas de acrílico con labios y goteos estilo pop art sobre fondo de pelo rosa",
           name: "Talleres de acrílico",
           price: "Desde $350",
           description:
@@ -668,6 +699,8 @@ export const es: SiteContent = {
         },
         {
           slug: "nail-art-workshops",
+          image: "/images/workshops/nail-art-workshops.jpg",
+          imageAlt: "Uñas coffin rosa fuerte con brillos, flores 3D, corazones dorados y cristales",
           name: "Talleres de nail art",
           price: "Desde $350",
           description:
@@ -678,6 +711,8 @@ export const es: SiteContent = {
         },
         {
           slug: "skills-workshop-membership",
+          image: "/images/workshops/skills-workshop-membership.jpg",
+          imageAlt: "Manicurista mostrando a una clienta una paleta de colores de uñas en un salón luminoso",
           name: "Membresía de talleres de habilidades",
           description:
             "La membresía de talleres de habilidades está diseñada para profesionales de uñas con licencia y estudiantes elegibles que quieren acceso continuo a educación práctica y desarrollo profesional durante todo el año. Las miembros pueden asistir hasta a cuatro talleres elegibles al mes, lo que les permite fortalecer sus bases, refinar técnicas, explorar servicios avanzados y seguir desarrollando su conocimiento profesional y de negocio. Los talleres elegibles pueden incluir uña natural, pedicura, acrílico, polygel, gel duro, extensiones de gel suave, nail art, desarrollo de negocio y otros talleres que ofrezca Tha Nail Artistry Academy. La membresía es un compromiso de 12 meses, y el registro a los talleres está sujeto a disponibilidad, horarios, requisitos de elegibilidad, prerrequisitos y políticas de la academia.",
@@ -712,18 +747,18 @@ export const es: SiteContent = {
       note: "Ten en cuenta que estos servicios pueden tardar más de lo habitual, así que reserva tiempo adicional si es necesario.",
       categories: { repairs: "Reparaciones y retiros", manipedi: "Manicura y pedicura", enhancements: "Realces de uñas" },
       items: [
-        { slug: "soak-off-removal", name: "Retiro / Soak Off", price: "$10", duration: "1 h", category: "repairs", description: "Retiro suave y sin daño de gel, dip o acrílico." },
-        { slug: "nail-repair", name: "Reparación de uña", price: "$5", duration: "30 min", category: "repairs", description: "Arreglamos una uña rota o levantada y la igualamos con tu set." },
-        { slug: "basic-manicure", name: "Manicura básica", price: "$10", duration: "2 h", category: "manipedi", description: "Limado, cuidado de cutícula, masaje y esmalte en uñas naturales." },
-        { slug: "russian-dry-structured-manicure", name: "Manicura rusa (en seco y estructurada)", price: "$20", duration: "1 h 30 min", category: "manipedi", description: "Trabajo preciso de cutícula en seco con e-file y overlay de gel estructurado para un acabado limpio y duradero." },
-        { slug: "russian-dry-structured-pedicure", name: "Pedicura rusa (en seco y estructurada)", price: "$30", duration: "2 h", category: "manipedi", description: "Técnica de pedicura en seco con trabajo detallado de cutícula y acabado de gel estructurado." },
-        { slug: "spa-pedicure", name: "Pedicura spa", price: "$20", duration: "2 h", category: "manipedi", description: "Remojo, exfoliación, cuidado de callos, masaje y esmalte." },
-        { slug: "basic-mani-spa-pedi-deal", name: "Paquete manicura básica y pedicura spa", price: "$40", duration: "3 h 30 min", category: "manipedi", description: "Nuestra manicura básica y pedicura spa juntas a precio de paquete." },
-        { slug: "dip-powder-full-set", name: "Set completo dip powder", price: "$25", duration: "2 h 30 min", category: "enhancements", description: "Un set de dip powder ligero y duradero con el color que elijas." },
-        { slug: "hard-gel-full-set", name: "Set completo de gel duro", price: "$35", duration: "3 h", category: "enhancements", description: "Realces de gel duro esculpidos o con tips, con forma personalizada y color en gel." },
-        { slug: "acrylic-full-set", name: "Set completo de acrílico", price: "$30", duration: "3 h", category: "enhancements", description: "Un realce duradero que combina monómero líquido y polvo acrílico. Se puede aplicar como overlay sobre la uña natural, esculpido o con tips para dar largo. Perfecto para quienes buscan resistencia, nail art llamativo o largo dramático. Incluye forma personalizada, tu elección de color en gel y top coat brillante o mate." },
-        { slug: "gel-x-full-set", name: "Set completo Gel-X", price: "$35", duration: "3 h", category: "enhancements", description: "Extensiones con tips de gel suave de aspecto natural, forma personalizada y color en gel." },
-        { slug: "polygel-full-set", name: "Set completo de polygel", price: "$35", duration: "3 h", category: "enhancements", description: "Realces de polygel ligeros esculpidos con moldes duales, con el color en gel que elijas." },
+        { slug: "soak-off-removal", name: "Retiro / Soak Off", price: "$10", duration: "1 h", category: "repairs", description: "Retiro suave y sin daño de gel, dip o acrílico." , image: "/images/services/soak-off-removal.jpg", imageAlt: "Manos con papel aluminio en las puntas de los dedos durante un retiro de gel" },
+        { slug: "nail-repair", name: "Reparación de uña", price: "$5", duration: "30 min", category: "repairs", description: "Arreglamos una uña rota o levantada y la igualamos con tu set." , image: "/images/services/nail-repair.jpg", imageAlt: "Manicurista con guantes reparando una uña natural con un palito de madera y adhesivo" },
+        { slug: "basic-manicure", name: "Manicura básica", price: "$10", duration: "2 h", category: "manipedi", description: "Limado, cuidado de cutícula, masaje y esmalte en uñas naturales." , image: "/images/services/basic-manicure.jpg", imageAlt: "Uñas naturales cortas con esmalte rojo brillante junto a un frasco de esmalte Hey Beautiful" },
+        { slug: "russian-dry-structured-manicure", name: "Manicura rusa (en seco y estructurada)", price: "$20", duration: "1 h 30 min", category: "manipedi", description: "Trabajo preciso de cutícula en seco con e-file y overlay de gel estructurado para un acabado limpio y duradero." , image: "/images/services/russian-manicure.jpg", imageAlt: "Uñas cuadradas cortas en lavanda, rosa y menta pastel con ondas y corazones después de una manicura rusa" },
+        { slug: "russian-dry-structured-pedicure", name: "Pedicura rusa (en seco y estructurada)", price: "$30", duration: "2 h", category: "manipedi", description: "Técnica de pedicura en seco con trabajo detallado de cutícula y acabado de gel estructurado." , image: "/images/services/russian-pedicure.jpg", imageAlt: "Uñas de los pies con acabado francés rosa y blanco de una pedicura rusa estructurada" },
+        { slug: "spa-pedicure", name: "Pedicura spa", price: "$20", duration: "2 h", category: "manipedi", description: "Remojo, exfoliación, cuidado de callos, masaje y esmalte." , image: "/images/services/spa-pedicure.jpg", imageAlt: "Técnica aplicando esmalte en las uñas de los pies durante una pedicura spa con toalla y sales" },
+        { slug: "basic-mani-spa-pedi-deal", name: "Paquete manicura básica y pedicura spa", price: "$40", duration: "3 h 30 min", category: "manipedi", description: "Nuestra manicura básica y pedicura spa juntas a precio de paquete." , image: "/images/services/basic-mani-spa-pedi-deal.jpg", imageAlt: "Manos y pies con esmalte blanco suave sobre una toalla blanca después de manicura y pedicura" },
+        { slug: "dip-powder-full-set", name: "Set completo dip powder", price: "$25", duration: "2 h 30 min", category: "enhancements", description: "Un set de dip powder ligero y duradero con el color que elijas." , image: "/images/services/dip-powder-full-set.jpg", imageAlt: "Uñas coffin con degradado nude a blanco y brillo de un set completo de dip powder" },
+        { slug: "hard-gel-full-set", name: "Set completo de gel duro", price: "$35", duration: "3 h", category: "enhancements", description: "Realces de gel duro esculpidos o con tips, con forma personalizada y color en gel." , image: "/images/services/hard-gel-full-set.jpg", imageAlt: "Uñas almendra negras de gel duro con flores moradas pintadas a mano y acentos cromados" },
+        { slug: "acrylic-full-set", name: "Set completo de acrílico", price: "$30", duration: "3 h", category: "enhancements", description: "Un realce duradero que combina monómero líquido y polvo acrílico. Se puede aplicar como overlay sobre la uña natural, esculpido o con tips para dar largo. Perfecto para quienes buscan resistencia, nail art llamativo o largo dramático. Incluye forma personalizada, tu elección de color en gel y top coat brillante o mate." , image: "/images/services/acrylic-full-set.jpg", imageAlt: "Uñas coffin rosas de acrílico con labios y goteos estilo pop art" },
+        { slug: "gel-x-full-set", name: "Set completo Gel-X", price: "$35", duration: "3 h", category: "enhancements", description: "Extensiones con tips de gel suave de aspecto natural, forma personalizada y color en gel." , image: "/images/services/gel-x-full-set.jpg", imageAlt: "Uñas stiletto Gel-X verde salvia y nude con caritas de payaso, estrellas y cristales" },
+        { slug: "polygel-full-set", name: "Set completo de polygel", price: "$35", duration: "3 h", category: "enhancements", description: "Realces de polygel ligeros esculpidos con moldes duales, con el color en gel que elijas." , image: "/images/services/polygel-full-set.jpg", imageAlt: "Uñas stiletto nude de polygel con enredaderas verdes y flores 3D en tonos pastel" },
       ],
       supervised: "TNAA se enorgullece de ofrecer servicios de alta calidad realizados por nuestras estudiantes bajo la supervisión directa de instructoras con licencia.",
       friendsFamilyCta: "¿Celebras a una estudiante? Conoce el Día de Amigos y Familia",
@@ -745,6 +780,16 @@ export const es: SiteContent = {
         { title: "¿Necesitas reprogramar?", text: "Lo entendemos. Solo avísanos si necesitas cancelar o cambiar la fecha. Una llamada o un correo es suficiente." },
       ],
       closing: "Esperamos conocerte y ayudarte a dar el primer paso hacia tu carrera como manicurista.",
+      facilityKicker: "Dentro de la academia",
+      facilityHeading: "Conoce nuestras instalaciones.",
+      facility: [
+        { src: "/images/facility/lobby-reception.jpg", alt: "Recepción de Tha Nail Artistry Academy con un escritorio de mármol blanco y paredes pintadas en lavanda y verde lima" },
+        { src: "/images/facility/nail-classroom.jpg", alt: "Salón de clases de Tha Nail Artistry Academy con mesas blancas, sillas negras, pizarrón y paredes lavanda" },
+        { src: "/images/facility/inside-station.jpg", alt: "Fila de estaciones de manicura blancas con sillas grises y lámparas junto a las ventanas de la academia" },
+        { src: "/images/facility/pedi-chairs.jpg", alt: "Tres sillones de pedicura spa de piel café sobre una plataforma de madera frente a una pared lavanda" },
+        { src: "/images/facility/back-bar.jpg", alt: "Área de trabajo trasera de la academia con gabinetes blancos, repisas con insumos y una pared lavanda" },
+      ],
+      heroAlt: "Recepción de Tha Nail Artistry Academy con el logotipo sobre un escritorio de mármol blanco y paredes lavanda y verde lima",
     },
     contact: {
       title: "Contacta a nuestra escuela de uñas en Houston",
@@ -817,6 +862,7 @@ export const es: SiteContent = {
       eyebrow: "Empleo",
       h1: "Únete al equipo",
       intro: "¿Te interesa unirte a Tha Nail Artistry Academy? Estamos buscando candidatas. Revisa nuestras vacantes actuales.",
+      heroAlt: "Salón de clases de Tha Nail Artistry Academy en Houston con mesas blancas, sillas negras y un pizarrón sobre una pared lavanda",
       openingsHeading: "Vacantes actuales",
       jobs: [
         {

@@ -28,3 +28,6 @@ Everything below is either mock content or an unresolved contradiction found on 
 
 ## Pages intentionally hidden from search engines
 Graduation Day and Friends & Family Day are reachable from the "More" menu but carry `noindex` because they are event pages with dated content.
+
+## Stock photos in use (Pexels license, free for commercial use, no attribution required)
+Workshop images for State Board Training, Business Development, Natural Nails, Pedicure, Toenail Enhancement, Soft Gel Extensions, Hard Gel and the Membership are Pexels stock photos (IDs 7092541, 11142407, 37033378, 34930123, 17056222, 4677854, 4677853, 7755245). Replace with academy photos whenever Gen has them: drop the file into `web/public/images/workshops/<slug>.jpg`.

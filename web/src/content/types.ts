@@ -41,6 +41,8 @@ export interface Program {
 export interface Workshop {
   slug: string;
   name: string;
+  image: string;
+  imageAlt: string;
   tagline?: string;
   price?: string;
   duration?: string;
@@ -59,6 +61,8 @@ export interface Service {
   duration: string;
   category: "repairs" | "manipedi" | "enhancements";
   description: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface TeamMember {
@@ -157,6 +161,12 @@ export interface SiteContent {
     reviewsKicker: string;
     reviewsHeading: string;
     reviewsMore: string;
+    prev: string;
+    next: string;
+    heroStyleLabel: string;
+    heroMarble: string;
+    heroMontage: string;
+    readFullStory: string;
     placeholderNote: string;
     designedBy: string;
     allRights: string;
@@ -198,6 +208,10 @@ export interface SiteContent {
       vision: string[];
       serving: string;
       cta: string;
+      founderKicker: string;
+      founderHeading: string;
+      founderText: string[];
+      founderImageAlt: string;
     };
     founder: PageMeta & {
       name: string;
@@ -330,6 +344,10 @@ export interface SiteContent {
       knowHeading: string;
       know: Feature[];
       closing: string;
+      facilityKicker: string;
+      facilityHeading: string;
+      facility: { src: string; alt: string }[];
+      heroAlt: string;
     };
     contact: PageMeta & {
       intro: string;
@@ -351,6 +369,7 @@ export interface SiteContent {
     };
     careers: PageMeta & {
       intro: string;
+      heroAlt: string;
       openingsHeading: string;
       jobs: { slug: string; title: string; type: string; summary: string; cta: string }[];
     };

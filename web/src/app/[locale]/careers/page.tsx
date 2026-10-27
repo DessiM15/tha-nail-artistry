@@ -19,7 +19,7 @@ export default async function CareersPage({ params }: PageProps<"/[locale]/caree
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/careers" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} image={{ src: "/images/facility/nail-classroom.jpg", alt: p.heroAlt, priority: true, landscape: true }} />
       <Section tone="white">
         <Container>
           <Reveal><h2 className="t-h3">{p.openingsHeading}</h2></Reveal>

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
+import { Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
+import { HeroMontage } from "@/components/sections/HeroMontage";
+import { HeroSwitch } from "@/components/sections/HeroSwitch";
 import { CTABand, FeatureGrid, FounderQuote, HoursBlock, Partners, ProgramCards, Reviews, WorkGallery } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
-import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
+import { BrandBlobs, Container, Eyebrow, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
@@ -17,7 +20,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const h = t.home;
   return (
     <>
-      <Hero locale={locale} t={t} />
+      <Suspense fallback={<Hero locale={locale} t={t} />}>
+        <HeroSwitch marble={<Hero locale={locale} t={t} />} montage={<HeroMontage locale={locale} t={t} />} labels={{ title: t.common.heroStyleLabel, marble: t.common.heroMarble, montage: t.common.heroMontage }} basePath={href("/")} />
+      </Suspense>
 
       <Section tone="white" labelledBy="intro-heading">
         <Container>
@@ -35,8 +40,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         </Container>
       </Section>
 
-      <Section tone="marble" labelledBy="programs-heading">
-        <Container>
+      <Section tone="marble" labelledBy="programs-heading" size="sm" className="overflow-hidden">
+        <BrandBlobs variant="band" opacity={0.4} />
+        <Container className="relative">
           <Reveal className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="max-w-2xl">
               <Eyebrow>{h.programs.kicker}</Eyebrow>
@@ -48,13 +54,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               <Button href={href("/which-program")} variant="secondary">{h.programs.quizCta}</Button>
             </div>
           </Reveal>
-          <div className="mt-12"><ProgramCards locale={locale} programs={t.pages.programs} t={t} /></div>
+          <div className="mt-8"><ProgramCards locale={locale} programs={t.pages.programs} t={t} /></div>
         </Container>
       </Section>
 
       <FounderQuote locale={locale} t={t} />
 
-      <WorkGallery alts={h.hero.imageAlts} kicker={h.gallery.kicker} heading={h.gallery.heading} cta={h.gallery.cta} />
+      <WorkGallery alts={h.hero.imageAlts} kicker={h.gallery.kicker} heading={h.gallery.heading} cta={h.gallery.cta} prevLabel={t.common.prev} nextLabel={t.common.next} />
 
       <Reviews reviews={t.reviews} t={t} />
 

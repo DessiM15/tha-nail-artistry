@@ -18,13 +18,13 @@ interface Props {
 }
 
 const variants: Record<Variant, string> = {
-  primary: "bg-black text-white hover:bg-black/85",
-  secondary: "bg-white text-black ring-1 ring-black/15 hover:ring-black/40",
-  lime: "bg-lime text-black hover:bg-lime/85",
-  onDark: "bg-white text-black hover:bg-lavender",
-  onDarkOutline: "bg-transparent text-white ring-1 ring-white/35 hover:ring-lavender hover:text-lavender",
-  ghost: "bg-transparent text-black hover:bg-black/5",
-  link: "bg-transparent text-black underline underline-offset-[0.25em] decoration-1 hover:decoration-lavender px-0",
+  primary: "bg-lavender text-black hover:bg-lime",
+  secondary: "bg-white text-black ring-1 ring-black/80 hover:bg-black hover:text-white",
+  lime: "bg-lime text-black hover:bg-lavender",
+  onDark: "bg-lavender text-black hover:bg-lime",
+  onDarkOutline: "bg-transparent text-white ring-1 ring-white/50 hover:bg-white hover:text-black",
+  ghost: "bg-transparent text-black hover:bg-lavender/30",
+  link: "bg-transparent text-black underline underline-offset-[0.3em] decoration-2 decoration-lavender hover:decoration-lime px-0",
 };
 const sizes: Record<Size, string> = {
   sm: "text-[0.8rem] px-4 py-2.5 gap-1.5",

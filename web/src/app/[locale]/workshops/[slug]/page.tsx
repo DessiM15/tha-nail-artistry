@@ -37,7 +37,7 @@ export default async function WorkshopPage({ params }: PageProps<"/[locale]/work
   const h1 = locale === "es" ? `${w.name} en Houston` : `${w.name} in Houston`;
   return (
     <>
-      <PageHero locale={locale} eyebrow={`${wp.kicker}${w.price ? ` · ${w.price}` : ""}${w.duration ? ` · ${w.duration}` : ""}`} h1={h1} lede={w.tagline} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={`${wp.kicker}${w.price ? ` · ${w.price}` : ""}${w.duration ? ` · ${w.duration}` : ""}`} h1={h1} lede={w.tagline} crumbs={crumbs} image={{ src: w.image, alt: w.imageAlt, priority: true }}>
         <Button href={wixUrl(w.wixPath)} external title={t.common.opensWix}>{w.bookLabel}</Button>
         <Button href={href("/workshops")} variant="secondary" icon={false}>{wp.backLabel}</Button>
       </PageHero>

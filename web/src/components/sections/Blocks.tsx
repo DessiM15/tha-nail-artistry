@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
-import { Container, Eyebrow, LeafDivider, Section, Stars } from "@/components/ui/Primitives";
+import { BrandBlobs, Container, Eyebrow, LeafDivider, Section, Stars } from "@/components/ui/Primitives";
+import { Strip } from "@/components/ui/Strip";
 import { Reveal } from "@/components/ui/Reveal";
 import { Check, Award, Briefcase, Clock, Heart, Layers, Users, Sparkle } from "@/components/ui/Icons";
 import type { Feature, Program, Review, SiteContent } from "@/content/types";
@@ -23,7 +24,7 @@ export function FeatureGrid({ items, columns = 3, withIcons = true }: { items: F
         return (
           <Reveal as="li" key={f.title} delay={i * 60} className="border-t border-black/15 pt-6">
             {withIcons && (
-              <span className="mb-4 inline-grid size-10 place-items-center rounded-full bg-lavender/25 text-black">
+              <span className={`mb-4 inline-grid size-10 place-items-center rounded-full text-black ${i % 2 === 0 ? "bg-lavender" : "bg-lime"}`}>
                 <Icon width={18} height={18} />
               </span>
             )}
@@ -42,7 +43,7 @@ export function Steps({ items }: { items: Feature[] }) {
     <ol className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((s, i) => (
         <Reveal as="li" key={s.title} delay={i * 60} className="rounded-2xl border border-black/10 bg-white p-6 sm:p-7">
-          <span className="t-display block text-lavender" style={{ fontSize: "clamp(2.5rem, 2rem + 2vw, 3.5rem)" }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+          <span className="t-display inline-grid size-14 place-items-center rounded-full bg-lime text-black" style={{ fontSize: "1.6rem" }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
           <h3 className="t-h4 mt-2"><span className="sr-only">Step {i + 1}: </span>{s.title}</h3>
           <p className="t-body mt-2 text-black/70">{s.text}</p>
         </Reveal>
@@ -58,10 +59,10 @@ export function ProgramCards({ locale, programs, t, compact = false }: { locale:
       {programs.map((p, i) => {
         const dark = !!p.featured;
         return (
-          <Reveal as="li" key={p.slug} delay={i * 80} className={`relative flex flex-col rounded-3xl p-7 sm:p-8 ${dark ? "on-dark bg-black text-white" : "bg-white text-black ring-1 ring-black/10"}`}>
+          <Reveal as="li" key={p.slug} delay={i * 80} className={`relative flex flex-col rounded-3xl p-6 sm:p-7 ${dark ? "on-dark bg-black text-white" : "bg-white text-black ring-1 ring-lavender"}`}>
             <div className="flex items-center justify-between gap-3">
               <Eyebrow tone={dark ? "lavender" : "dark"}>{p.shortName}</Eyebrow>
-              <span className={`rounded-full px-3 py-1 text-[0.72rem] font-semibold ${dark ? "bg-lime text-black" : "bg-black/5 text-black/70"}`}>{daysLabel(t.common, p.daysPerWeek)}</span>
+              <span className={`rounded-full px-3 py-1 text-[0.72rem] font-semibold ${dark ? "bg-lime text-black" : "bg-lavender text-black"}`}>{daysLabel(t.common, p.daysPerWeek)}</span>
             </div>
             <h3 className="t-h3 mt-5">{p.name}</h3>
             <p className={`t-body mt-2 ${dark ? "text-white/75" : "text-black/70"}`}>{p.tagline}</p>
@@ -70,7 +71,7 @@ export function ProgramCards({ locale, programs, t, compact = false }: { locale:
               <ul className="mt-6 space-y-2.5">
                 {p.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-2.5 text-[0.92rem]">
-                    <Check width={16} height={16} className={`mt-1 shrink-0 ${dark ? "text-lime" : "text-black"}`} />
+                    <span className={`mt-0.5 inline-grid size-5 shrink-0 place-items-center rounded-full ${dark ? "bg-lime" : "bg-lime"}`}><Check width={12} height={12} className="text-black" /></span>
                     <span className={dark ? "text-white/90" : "text-black/85"}>{h}</span>
                   </li>
                 ))}
@@ -91,8 +92,9 @@ export function ProgramCards({ locale, programs, t, compact = false }: { locale:
 export function FounderQuote({ locale, t }: { locale: Locale; t: SiteContent }) {
   const f = t.home.founder;
   return (
-    <Section tone="black" labelledBy="founder-quote">
-      <Container className="grid items-center gap-12 lg:grid-cols-12">
+    <Section tone="black" labelledBy="founder-quote" className="overflow-hidden">
+      <BrandBlobs variant="band" opacity={0.35} />
+      <Container className="relative grid items-center gap-10 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md">
             <Image src="/images/campus/gen-henriquez-founder.jpg" alt="Gen Henriquez, founder of Tha Nail Artistry Academy, standing behind a table of professional student nail kits in the Houston classroom" fill className="object-cover object-[50%_30%]" sizes="(min-width: 1024px) 40vw, 90vw" />
@@ -117,22 +119,26 @@ export function FounderQuote({ locale, t }: { locale: Locale; t: SiteContent }) 
 /* ---------- Reviews ---------- */
 export function Reviews({ reviews, t }: { reviews: Review[]; t: SiteContent }) {
   return (
-    <Section tone="marble" labelledBy="reviews-heading">
-      <Container>
-        <Reveal className="max-w-2xl">
-          <Eyebrow>{t.common.reviewsKicker}</Eyebrow>
+    <Section tone="lavenderTint" labelledBy="reviews-heading" size="sm" className="overflow-hidden">
+      <BrandBlobs variant="corner" opacity={0.5} />
+      <Container className="relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <Eyebrow className="justify-center">{t.common.reviewsKicker}</Eyebrow>
           <h2 id="reviews-heading" className="t-h2 mt-4">{t.common.reviewsHeading}</h2>
         </Reveal>
-        <ul className="mt-12 grid gap-5 md:grid-cols-2">
-          {reviews.map((r, i) => (
-            <Reveal as="li" key={r.name} delay={i * 70} className="flex flex-col rounded-3xl bg-white p-7 ring-1 ring-black/10 sm:p-8">
-              <Stars n={r.rating} className="text-black" />
-              <blockquote className="t-body mt-4 flex-1 text-black/80"><p>“{r.text}”</p></blockquote>
-              <p className="mt-6 flex items-center gap-3 text-[0.85rem]"><span aria-hidden="true" className="h-px w-6 bg-lavender" /><span className="font-semibold">{r.name}</span><span className="text-black/50">{r.source}</span></p>
-            </Reveal>
+        <Strip className="mt-8" ariaLabel={t.common.reviewsHeading} prevLabel={t.common.prev} nextLabel={t.common.next}>
+          {reviews.map((r) => (
+            <li key={r.name} className="flex w-[min(85vw,26rem)] flex-col rounded-3xl bg-white p-6 ring-1 ring-lavender lg:w-[30rem]">
+              <div className="flex items-center justify-between">
+                <Stars n={r.rating} className="text-black" />
+                <span aria-hidden="true" className="t-display leading-none text-lime" style={{ fontSize: "3rem" }}>”</span>
+              </div>
+              <blockquote className="t-body mt-2 flex-1 text-black/80"><p>{r.text}</p></blockquote>
+              <p className="mt-5 flex items-center gap-3 text-[0.85rem]"><span aria-hidden="true" className="h-px w-6 bg-lavender" /><span className="font-semibold">{r.name}</span><span className="text-black/65">{r.source}</span></p>
+            </li>
           ))}
-        </ul>
-        <div className="mt-10"><Button href={business.mapsUrl} variant="link" external>{t.common.reviewsMore}</Button></div>
+        </Strip>
+        <div className="mt-2 text-center"><Button href={business.mapsUrl} variant="link" external>{t.common.reviewsMore}</Button></div>
       </Container>
     </Section>
   );
@@ -172,8 +178,9 @@ export function HoursBlock({ locale, t }: { locale: Locale; t: SiteContent }) {
   const c = t.common;
   const h = t.home.hours;
   return (
-    <Section tone="white" labelledBy="hours-heading">
-      <Container className="grid items-center gap-12 lg:grid-cols-12">
+    <Section tone="limeTint" labelledBy="hours-heading" className="overflow-hidden">
+      <BrandBlobs variant="corner" opacity={0.4} />
+      <Container className="relative grid items-center gap-10 lg:grid-cols-12">
         <Reveal className="lg:col-span-6">
           <Eyebrow>{h.kicker}</Eyebrow>
           <h2 id="hours-heading" className="t-h2 mt-4">{h.heading}</h2>
@@ -218,8 +225,9 @@ export function HoursBlock({ locale, t }: { locale: Locale; t: SiteContent }) {
 export function CTABand({ locale, heading, text, primary, secondary, primaryHref, secondaryHref, primaryExternal }: { locale: Locale; heading: string; text?: string; primary: string; secondary?: string; primaryHref?: string; secondaryHref?: string; primaryExternal?: boolean }) {
   return (
     <Section tone="black" size="sm" labelledBy="cta-heading" className="overflow-hidden">
+      <BrandBlobs variant="band" opacity={0.35} />
       <Container className="relative">
-        <LeafDivider className="mb-10" />
+        <LeafDivider className="mb-8" />
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2 id="cta-heading" className="t-h2">{heading}</h2>
           {text && <p className="t-lede mt-4 text-white/75">{text}</p>}
@@ -235,13 +243,13 @@ export function CTABand({ locale, heading, text, primary, secondary, primaryHref
 }
 
 /* ---------- Work gallery ---------- */
-export function WorkGallery({ alts, heading, kicker, cta, compact = false, indices = allSets }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean; indices?: number[] }) {
+export function WorkGallery({ alts, heading, kicker, cta, compact = false, indices = allSets, prevLabel, nextLabel }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean; indices?: number[]; prevLabel: string; nextLabel: string }) {
   const work = indices.map((i) => ({ i, ...workImages[i] }));
   return (
     <Section tone="white" size={compact ? "sm" : "md"} labelledBy="gallery-heading">
       <Container>
         {(heading || kicker) && (
-          <Reveal className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <Reveal className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               {kicker && <Eyebrow>{kicker}</Eyebrow>}
               {heading && <h2 id="gallery-heading" className="t-h2 mt-3">{heading}</h2>}
@@ -249,15 +257,15 @@ export function WorkGallery({ alts, heading, kicker, cta, compact = false, indic
             {cta && <Button href={business.social.instagram} variant="link" external>{cta}</Button>}
           </Reveal>
         )}
-        <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <Strip ariaLabel={heading ?? kicker ?? "Gallery"} prevLabel={prevLabel} nextLabel={nextLabel}>
           {work.map((img, i) => (
-            <Reveal as="li" key={img.src} delay={(i % 4) * 70} className={i % 2 === 1 ? "lg:translate-y-10" : ""}>
+            <li key={img.src} className="w-[min(70vw,17rem)] sm:w-[19rem]">
               <div className={`relative overflow-hidden ${i % 2 === 0 ? "arch" : "rounded-3xl"} aspect-[4/5]`}>
-                <Image src={img.src} alt={alts[img.i] ?? ""} fill className="object-cover transition-transform duration-700 ease-out-expo hover:scale-[1.04]" sizes="(min-width: 1024px) 25vw, 50vw" />
+                <Image src={img.src} alt={alts[img.i] ?? ""} fill className="object-cover transition-transform duration-700 ease-out-expo hover:scale-[1.04]" sizes="(min-width: 640px) 304px, 70vw" />
               </div>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </Strip>
       </Container>
     </Section>
   );

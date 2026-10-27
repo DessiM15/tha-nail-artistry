@@ -6,7 +6,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
-import { Container, Eyebrow, LeafDivider, Section } from "@/components/ui/Primitives";
+import { BrandBlobs, Container, Eyebrow, LeafDivider, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about">): Promise<Metadata> {
@@ -20,19 +20,39 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
   const p = t.pages.about;
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} crumbs={[{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/about" }]} image={{ src: "/images/campus/gen-with-student.jpg", alt: "Gen Henriquez guiding a student through a nail art practice sheet at Tha Nail Artistry Academy in Houston", priority: true }} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} crumbs={[{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/about" }]} image={{ src: "/images/campus/gen-with-student.jpg", alt: "Gen Henriquez guiding a student through a nail art practice sheet at Tha Nail Artistry Academy in Houston", priority: true, landscape: true }} />
 
       <Section tone="white">
         <Container className="grid gap-12 lg:grid-cols-12">
           <Reveal className="prose-site t-lede lg:col-span-7 text-black/80">
             {p.body.map((para) => <p key={para}>{para}</p>)}
             <p className="mt-8 text-[0.85rem] font-semibold tracking-[0.04em] text-black/60">{p.serving}</p>
-            <div className="mt-8"><Button href={href("/founder")}>{p.cta}</Button></div>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <Image src="/images/campus/gen-henriquez-founder.jpg" alt="Gen Henriquez, founder of Tha Nail Artistry Academy, standing behind a table of professional student nail kits in the Houston classroom" fill className="object-cover object-[50%_35%]" sizes="(min-width:1024px) 40vw, 100vw" />
+              <Image src="/images/campus/class-with-rayven.jpg" alt="Rayven Russell teaching a hands-on class at Tha Nail Artistry Academy, Houston" fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 100vw" />
             </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section tone="lavenderTint" labelledBy="founder-heading" className="overflow-hidden">
+        <BrandBlobs variant="corner" opacity={0.5} />
+        <Container className="relative grid items-center gap-10 lg:grid-cols-12">
+          <Reveal className="lg:col-span-5">
+            <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md">
+              <Image src="/images/campus/gen-teaching.jpg" alt={p.founderImageAlt} fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 90vw" />
+            </div>
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-7">
+            <Eyebrow>{p.founderKicker}</Eyebrow>
+            <h2 id="founder-heading" className="t-h2 mt-4">{p.founderHeading}</h2>
+            <p className="mt-1 text-[0.9rem] font-semibold text-black/60">{t.pages.founder.role}</p>
+            <div className="prose-site t-lede mt-6 text-black/80">
+              {p.founderText.map((para) => <p key={para}>{para}</p>)}
+            </div>
+            <p className="t-h4 t-italic mt-6 text-black/80">“{t.pages.founder.quote}”</p>
+            <div className="mt-6"><Button href={href("/founder")} variant="link">{t.common.readFullStory}</Button></div>
           </Reveal>
         </Container>
       </Section>

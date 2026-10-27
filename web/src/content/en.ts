@@ -57,9 +57,15 @@ export const en: SiteContent = {
     sunday: "Sunday",
     partnersHeading: "Our Product Partners",
     partnersKicker: "Trained on professional brands",
-    reviewsKicker: "Google Reviews",
-    reviewsHeading: "What our students and clients say",
+    reviewsKicker: "From Google",
+    reviewsHeading: "Student Reviews",
     reviewsMore: "More on Google",
+    prev: "Scroll back",
+    next: "Scroll forward",
+    heroStyleLabel: "Hero preview",
+    heroMarble: "Marble",
+    heroMontage: "Montage",
+    readFullStory: "Read Gen's full story",
     placeholderNote: "Placeholder copy. Final text coming from the academy.",
     designedBy: "Website designed by",
     allRights: "All Rights Reserved.",
@@ -200,6 +206,13 @@ export const en: SiteContent = {
       ],
       serving: "Proudly serving Cypress · Jersey Village · Katy · Northwest Houston",
       cta: "Meet the Founder",
+      founderKicker: "Meet the Founder",
+      founderHeading: "Gen Henriquez",
+      founderText: [
+        "After becoming a licensed nail technician over 6 years ago, I quickly realized something many aspiring nail techs experience, nail school didn't prepare me for the real world. Even though I had already started taking clients, the education I received wasn't enough to give me the confidence I needed to excel in my business.",
+        "That's why I created Tha Nail Artistry Academy. When you graduate, you don't just leave with a license, you leave with the skills, confidence, and leadership ability to open your own business.",
+      ],
+      founderImageAlt: "Gen Henriquez in a grey Tha Nail Artistry Academy instructor scrub top guiding a student's hands during a hands-on class",
     },
     founder: {
       title: "Meet Our Founder, Gen Henriquez",
@@ -577,6 +590,8 @@ export const en: SiteContent = {
       items: [
         {
           slug: "texas-manicurist-state-board-training",
+          image: "/images/workshops/texas-manicurist-state-board-training.jpg",
+          imageAlt: "Students taking a written exam in a classroom while an instructor looks on",
           name: "Texas Manicurist State Board Training",
           tagline: "Ace Your Exam, Launch Your Career",
           price: "From $350",
@@ -590,6 +605,8 @@ export const en: SiteContent = {
         },
         {
           slug: "business-development-workshops",
+          image: "/images/workshops/business-development-workshops.jpg",
+          imageAlt: "Nail professional at her salon desk with a planner, polishes and a laptop",
           name: "Business Development Workshops",
           price: "From $350",
           description:
@@ -600,6 +617,8 @@ export const en: SiteContent = {
         },
         {
           slug: "natural-nails-workshops",
+          image: "/images/workshops/natural-nails-workshops.jpg",
+          imageAlt: "Close-up of cuticle work on a natural nail with a nipper",
           name: "Natural Nails Workshops",
           price: "From $350",
           description:
@@ -610,6 +629,8 @@ export const en: SiteContent = {
         },
         {
           slug: "pedicure-workshops",
+          image: "/images/workshops/pedicure-workshops.jpg",
+          imageAlt: "Nail technician in a mask performing a pedicure at a salon station",
           name: "Pedicure Workshops",
           price: "From $350",
           description:
@@ -620,6 +641,8 @@ export const en: SiteContent = {
         },
         {
           slug: "toenail-enhancement-workshops",
+          image: "/images/workshops/toenail-enhancement-workshops.jpg",
+          imageAlt: "Gloved hands applying product to a toenail",
           name: "Toenail Enhancement Workshops",
           price: "$350",
           description:
@@ -630,6 +653,8 @@ export const en: SiteContent = {
         },
         {
           slug: "soft-gel-extensions-workshops",
+          image: "/images/workshops/soft-gel-extensions-workshops.jpg",
+          imageAlt: "Technician opening gel bottles to apply soft gel to a client's nails",
           name: "Soft Gel Extensions Workshops",
           price: "From $350",
           description:
@@ -640,6 +665,8 @@ export const en: SiteContent = {
         },
         {
           slug: "hard-gel-workshops",
+          image: "/images/workshops/hard-gel-workshops.jpg",
+          imageAlt: "Hand curing under a UV LED nail lamp",
           name: "Hard Gel Workshops",
           price: "From $350",
           description:
@@ -650,6 +677,8 @@ export const en: SiteContent = {
         },
         {
           slug: "polygel-workshops",
+          image: "/images/workshops/polygel-workshops.jpg",
+          imageAlt: "Nude square nails with caramel swirls, pearls, gold crystals and 3D white roses",
           name: "Polygel Workshops",
           price: "From $350",
           description:
@@ -660,6 +689,8 @@ export const en: SiteContent = {
         },
         {
           slug: "acrylic-workshops",
+          image: "/images/workshops/acrylic-workshops.jpg",
+          imageAlt: "Pink coffin acrylic nails with cartoon pop-art lips and drips on a pink fur background",
           name: "Acrylic Workshops",
           price: "From $350",
           description:
@@ -670,6 +701,8 @@ export const en: SiteContent = {
         },
         {
           slug: "nail-art-workshops",
+          image: "/images/workshops/nail-art-workshops.jpg",
+          imageAlt: "Hot pink coffin nails with glitter, 3D flowers, gold hearts and crystals",
           name: "Nail Art Workshops",
           price: "From $350",
           description:
@@ -680,6 +713,8 @@ export const en: SiteContent = {
         },
         {
           slug: "skills-workshop-membership",
+          image: "/images/workshops/skills-workshop-membership.jpg",
+          imageAlt: "Manicurist showing a client a palette of nail colors in a bright salon",
           name: "Skills Workshop Membership",
           description:
             "The Skills Workshop Membership is designed for licensed nail professionals and eligible nail students who want ongoing access to hands-on education and professional development throughout the year. Members may attend up to four eligible Skills Workshops per month, allowing them to strengthen foundational skills, refine existing techniques, explore advanced services, and continue developing their business and professional knowledge. Eligible workshops may include Natural Nails, Pedicures, Acrylic, Polygel, Hard Gel, Soft Gel Extensions, Nail Art, Business Development, and other qualifying workshops offered by Tha Nail Artistry Academy. The membership is a 12-month commitment, and workshop registration is subject to availability, scheduling, eligibility requirements, prerequisites, and academy policies.",
@@ -714,18 +749,18 @@ export const en: SiteContent = {
       note: "Please keep in mind that these services may take longer than usual, so allow for more time if necessary.",
       categories: { repairs: "Repairs & Removals", manipedi: "Manicures & Pedicures", enhancements: "Nail Enhancements" },
       items: [
-        { slug: "soak-off-removal", name: "Soak Off / Removal", price: "$10", duration: "1 hr", category: "repairs", description: "Gentle, damage-free removal of gel, dip or acrylic enhancements." },
-        { slug: "nail-repair", name: "Nail Repair", price: "$5", duration: "30 min", category: "repairs", description: "Fix a broken or lifted nail and match it to your set." },
-        { slug: "basic-manicure", name: "Basic Manicure", price: "$10", duration: "2 hr", category: "manipedi", description: "Shaping, cuticle care, massage and polish on natural nails." },
-        { slug: "russian-dry-structured-manicure", name: "Russian (Dry & Structured) Manicure", price: "$20", duration: "1 hr 30 min", category: "manipedi", description: "Precise dry cuticle work with an e-file and a structured gel overlay for a clean, long-lasting finish." },
-        { slug: "russian-dry-structured-pedicure", name: "Russian (Dry & Structured) Pedicure", price: "$30", duration: "2 hr", category: "manipedi", description: "Dry pedicure technique with detailed cuticle work and a structured gel finish." },
-        { slug: "spa-pedicure", name: "Spa Pedicure", price: "$20", duration: "2 hr", category: "manipedi", description: "Soak, exfoliation, callus care, massage and polish." },
-        { slug: "basic-mani-spa-pedi-deal", name: "Basic Mani & Spa Pedi Deal", price: "$40", duration: "3 hr 30 min", category: "manipedi", description: "Our basic manicure and spa pedicure together at a bundled price." },
-        { slug: "dip-powder-full-set", name: "Dip Powder Full Set", price: "$25", duration: "2 hr 30 min", category: "enhancements", description: "A lightweight, durable dip powder set with your choice of color." },
-        { slug: "hard-gel-full-set", name: "Hard Gel Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Sculpted or tip hard gel enhancements with custom shaping and gel color." },
-        { slug: "acrylic-full-set", name: "Acrylic Full Set", price: "$30", duration: "3 hr", category: "enhancements", description: "A durable nail enhancement made by combining liquid monomer and acrylic powder. Can be applied as an overlay on natural nail, sculpted or with tips to add length. Perfect for clients looking for long-lasting strength, bold nail art, or dramatic length. Includes custom shaping, your choice of gel color and a shiny or matte gel top coat." },
-        { slug: "gel-x-full-set", name: "Gel-X Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Soft gel tip extensions with a natural look, custom shaping and gel color." },
-        { slug: "polygel-full-set", name: "Polygel Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Lightweight polygel enhancements sculpted with dual forms, with your choice of gel color." },
+        { slug: "soak-off-removal", name: "Soak Off / Removal", price: "$10", duration: "1 hr", category: "repairs", description: "Gentle, damage-free removal of gel, dip or acrylic enhancements." , image: "/images/services/soak-off-removal.jpg", imageAlt: "Hands with foil wraps on the fingertips during a gel soak-off removal" },
+        { slug: "nail-repair", name: "Nail Repair", price: "$5", duration: "30 min", category: "repairs", description: "Fix a broken or lifted nail and match it to your set." , image: "/images/services/nail-repair.jpg", imageAlt: "Gloved nail tech repairing a natural nail with a wooden stick and adhesive" },
+        { slug: "basic-manicure", name: "Basic Manicure", price: "$10", duration: "2 hr", category: "manipedi", description: "Shaping, cuticle care, massage and polish on natural nails." , image: "/images/services/basic-manicure.jpg", imageAlt: "Short natural nails in glossy red polish next to a Hey Beautiful polish bottle" },
+        { slug: "russian-dry-structured-manicure", name: "Russian (Dry & Structured) Manicure", price: "$20", duration: "1 hr 30 min", category: "manipedi", description: "Precise dry cuticle work with an e-file and a structured gel overlay for a clean, long-lasting finish." , image: "/images/services/russian-manicure.jpg", imageAlt: "Short square nails in pastel lavender, pink and mint with wave and heart art after a Russian manicure" },
+        { slug: "russian-dry-structured-pedicure", name: "Russian (Dry & Structured) Pedicure", price: "$30", duration: "2 hr", category: "manipedi", description: "Dry pedicure technique with detailed cuticle work and a structured gel finish." , image: "/images/services/russian-pedicure.jpg", imageAlt: "Toenails with a clean pink and white French finish from a Russian structured pedicure" },
+        { slug: "spa-pedicure", name: "Spa Pedicure", price: "$20", duration: "2 hr", category: "manipedi", description: "Soak, exfoliation, callus care, massage and polish." , image: "/images/services/spa-pedicure.jpg", imageAlt: "Technician applying polish to toenails during a spa pedicure with a towel and salt soak" },
+        { slug: "basic-mani-spa-pedi-deal", name: "Basic Mani & Spa Pedi Deal", price: "$40", duration: "3 hr 30 min", category: "manipedi", description: "Our basic manicure and spa pedicure together at a bundled price." , image: "/images/services/basic-mani-spa-pedi-deal.jpg", imageAlt: "Hands and feet with soft white polish resting on a white towel after a manicure and pedicure" },
+        { slug: "dip-powder-full-set", name: "Dip Powder Full Set", price: "$25", duration: "2 hr 30 min", category: "enhancements", description: "A lightweight, durable dip powder set with your choice of color." , image: "/images/services/dip-powder-full-set.jpg", imageAlt: "Nude to white ombré coffin nails with shimmer from a dip powder full set" },
+        { slug: "hard-gel-full-set", name: "Hard Gel Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Sculpted or tip hard gel enhancements with custom shaping and gel color." , image: "/images/services/hard-gel-full-set.jpg", imageAlt: "Black almond hard gel nails with hand-painted purple flowers and silver chrome accents" },
+        { slug: "acrylic-full-set", name: "Acrylic Full Set", price: "$30", duration: "3 hr", category: "enhancements", description: "A durable nail enhancement made by combining liquid monomer and acrylic powder. Can be applied as an overlay on natural nail, sculpted or with tips to add length. Perfect for clients looking for long-lasting strength, bold nail art, or dramatic length. Includes custom shaping, your choice of gel color and a shiny or matte gel top coat." , image: "/images/services/acrylic-full-set.jpg", imageAlt: "Pink coffin acrylic nails with cartoon pop-art lips and drip designs" },
+        { slug: "gel-x-full-set", name: "Gel-X Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Soft gel tip extensions with a natural look, custom shaping and gel color." , image: "/images/services/gel-x-full-set.jpg", imageAlt: "Sage green and nude stiletto Gel-X nails with clown faces, stars and crystals" },
+        { slug: "polygel-full-set", name: "Polygel Full Set", price: "$35", duration: "3 hr", category: "enhancements", description: "Lightweight polygel enhancements sculpted with dual forms, with your choice of gel color." , image: "/images/services/polygel-full-set.jpg", imageAlt: "Nude stiletto polygel nails with green vines and pastel 3D flowers" },
       ],
       supervised: "TNAA is excited to offer high quality services from our students under the direct supervision of our licensed instructors.",
       friendsFamilyCta: "Celebrating a student? See Friends & Family Day",
@@ -747,6 +782,16 @@ export const en: SiteContent = {
         { title: "Need to Reschedule?", text: "Life happens, just let us know if you need to cancel or reschedule. A quick call or email works!" },
       ],
       closing: "We can't wait to meet you and help you take the first step toward your nail tech career!",
+      facilityKicker: "Inside the academy",
+      facilityHeading: "Take a look around.",
+      facility: [
+        { src: "/images/facility/lobby-reception.jpg", alt: "Tha Nail Artistry Academy lobby with a white marble reception desk and lavender and lime green painted walls" },
+        { src: "/images/facility/nail-classroom.jpg", alt: "Classroom at Tha Nail Artistry Academy with white desks, black chairs, a whiteboard and lavender walls" },
+        { src: "/images/facility/inside-station.jpg", alt: "Row of white manicure stations with grey chairs and desk lamps by the front windows of the academy" },
+        { src: "/images/facility/pedi-chairs.jpg", alt: "Three brown leather pedicure spa chairs on a wooden platform against a lavender wall" },
+        { src: "/images/facility/back-bar.jpg", alt: "Back bar area of the academy with white cabinets, shelves of supplies and a lavender accent wall" },
+      ],
+      heroAlt: "Tha Nail Artistry Academy lobby with the logo above a white marble reception desk and lavender and lime walls",
     },
     contact: {
       title: "Contact Our Nail School in Houston",
@@ -819,6 +864,7 @@ export const en: SiteContent = {
       eyebrow: "Careers",
       h1: "Join the Team!",
       intro: "Are you interested in joining us here at Tha Nail Artistry Academy? We're looking for potential candidates! Check out our current openings below.",
+      heroAlt: "Classroom at Tha Nail Artistry Academy in Houston with white desks, black chairs and a whiteboard on a lavender wall",
       openingsHeading: "Current openings",
       jobs: [
         {
