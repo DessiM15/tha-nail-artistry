@@ -163,13 +163,6 @@ export interface SiteContent {
     reviewsMore: string;
     prev: string;
     next: string;
-    heroStyleLabel: string;
-    heroMarble: string;
-    heroMontage: string;
-    heroSlideshow: string;
-    pauseSlideshow: string;
-    playSlideshow: string;
-    slideOf: string;
     readFullStory: string;
     placeholderNote: string;
     designedBy: string;
