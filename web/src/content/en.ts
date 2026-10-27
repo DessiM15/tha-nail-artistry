@@ -64,6 +64,7 @@ export const en: SiteContent = {
     next: "Scroll forward",
     readFullStory: "Read Gen's full story",
     placeholderNote: "Placeholder copy. Final text coming from the academy.",
+    and: "and",
     designedBy: "Website designed by",
     allRights: "All Rights Reserved.",
     footerTagline:
@@ -240,7 +241,7 @@ export const en: SiteContent = {
     team: {
       title: "Meet Our Team of Houston Nail Instructors",
       description:
-        "Meet the licensed instructors and staff behind Tha Nail Artistry Academy, Houston's hands-on nail school: Destiny Pizarro-Bell, Rayven Russell and Mia Curry.",
+        "Meet the licensed instructors and staff behind Tha Nail Artistry Academy, Houston's hands-on nail school: {names}.",
       eyebrow: "Meet Our Team",
       h1: "Licensed instructors with real salon experience.",
       lede: "Every instructor at the academy has built a career in nails. You learn from that experience directly.",
@@ -257,6 +258,8 @@ export const en: SiteContent = {
         },
         {
           slug: "rayven-russell",
+          // Leaves the academy after the week of Oct 26, 2026. Removed Sunday Nov 1, 2026 at 10pm Central (CST).
+          activeUntil: "2026-11-02T04:00:00Z",
           name: "Rayven Russell",
           role: "Manicurist Program Coordinator",
           image: "/images/team/rayven-russell.jpg",

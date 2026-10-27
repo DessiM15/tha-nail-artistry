@@ -31,3 +31,7 @@ Graduation Day and Friends & Family Day are reachable from the "More" menu but c
 
 ## Stock photos in use (Pexels license, free for commercial use, no attribution required)
 Workshop images for State Board Training, Business Development, Natural Nails, Pedicure, Toenail Enhancement, Soft Gel Extensions, Hard Gel and the Membership are Pexels stock photos (IDs 7092541, 11142407, 37033378, 34930123, 17056222, 4677854, 4677853, 7755245). Replace with academy photos whenever Gen has them: drop the file into `web/public/images/workshops/<slug>.jpg`.
+
+## Scheduled change
+
+- Rayven Russell leaves the academy after the week of Oct 26, 2026. Her Team page bio is set to disappear automatically on Sunday, November 1, 2026 at 10:00 PM Central (`activeUntil` on her entry in `pages.team.members`, en and es). The Team page renders its roster at request time, so no redeploy is needed. Her photo file `public/images/team/rayven-russell.jpg` and the About page class photo `public/images/campus/class-with-rayven.jpg` are left in place; Gen to say whether the About photo should be swapped.

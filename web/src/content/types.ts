@@ -73,6 +73,8 @@ export interface TeamMember {
   imageAlt: string;
   bio: string[];
   isPlaceholderBio?: boolean;
+  /** ISO instant (UTC). After this moment the member is dropped from the roster at request time. */
+  activeUntil?: string;
 }
 
 export interface Review {
@@ -165,6 +167,7 @@ export interface SiteContent {
     next: string;
     readFullStory: string;
     placeholderNote: string;
+    and: string;
     designedBy: string;
     allRights: string;
     footerTagline: string;

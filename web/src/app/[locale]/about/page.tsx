@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <Image src="/images/campus/class-with-rayven.jpg" alt="Rayven Russell teaching a hands-on class at Tha Nail Artistry Academy, Houston" fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 100vw" />
+              <Image src="/images/campus/class-with-rayven.jpg" alt="An instructor guiding students through a hands-on class at Tha Nail Artistry Academy, Houston" fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 100vw" />
             </div>
           </Reveal>
         </Container>

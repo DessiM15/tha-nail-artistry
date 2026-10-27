@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
+import { fill } from "@/lib/format";
+import { activeMembers, joinNames, requestNow } from "@/lib/team";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
@@ -12,7 +15,9 @@ import { Reveal } from "@/components/ui/Reveal";
 export async function generateMetadata({ params }: PageProps<"/[locale]/team">): Promise<Metadata> {
   const { locale, t } = await getPage(params);
   const p = t.pages.team;
-  return buildMetadata({ locale, path: "/team", title: p.title, description: p.description, kicker: p.eyebrow });
+  const now = await requestNow();
+  const names = joinNames(activeMembers(p.members, now).map((m) => m.name), t.common.and);
+  return buildMetadata({ locale, path: "/team", title: p.title, description: fill(p.description, { names }), kicker: p.eyebrow });
 }
 
 export default async function TeamPage({ params }: PageProps<"/[locale]/team">) {
@@ -25,28 +30,43 @@ export default async function TeamPage({ params }: PageProps<"/[locale]/team">) 
 
       <Section tone="white">
         <Container className="space-y-20 lg:space-y-28">
-          {p.members.map((m, i) => (
-            <article key={m.slug} id={m.slug} className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16" aria-labelledby={`${m.slug}-name`}>
-              <Reveal className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md lg:sticky lg:top-28">
-                  <Image src={m.image} alt={m.imageAlt} fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 90vw" priority={i === 0} />
-                </div>
-              </Reveal>
-              <Reveal delay={100} className="lg:col-span-7">
-                <Eyebrow>{m.role}</Eyebrow>
-                <h2 id={`${m.slug}-name`} className="t-h2 mt-4">{m.name}</h2>
-                <div className="prose-site t-body mt-6 max-w-2xl text-black/80">
-                  {m.bio.map((para) => <p key={para}>{para}</p>)}
-                </div>
-                {m.isPlaceholderBio && <Note>{t.common.placeholderNote}</Note>}
-              </Reveal>
-            </article>
-          ))}
+          <Suspense fallback={null}>
+            <Roster params={params} />
+          </Suspense>
         </Container>
       </Section>
 
       <CTABand locale={locale} heading={p.closing} primary={p.cta} primaryHref={wixLinks.apply} primaryExternal secondary={t.common.bookTour} />
-      <JsonLd data={[breadcrumbJsonLd(locale, crumbs), ...p.members.map((m) => ({ "@context": "https://schema.org", "@type": "Person", name: m.name, jobTitle: m.role, image: m.image }))]} />
+      <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
+    </>
+  );
+}
+
+/** Rendered at request time so members with an activeUntil date drop off on schedule. */
+async function Roster({ params }: Pick<PageProps<"/[locale]/team">, "params">) {
+  const { t } = await getPage(params);
+  const now = await requestNow();
+  const members = activeMembers(t.pages.team.members, now);
+  return (
+    <>
+      {members.map((m, i) => (
+        <article key={m.slug} id={m.slug} className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16" aria-labelledby={`${m.slug}-name`}>
+          <Reveal className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+            <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md lg:sticky lg:top-28">
+              <Image src={m.image} alt={m.imageAlt} fill className="object-cover object-top" sizes="(min-width:1024px) 40vw, 90vw" priority={i === 0} />
+            </div>
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-7">
+            <Eyebrow>{m.role}</Eyebrow>
+            <h2 id={`${m.slug}-name`} className="t-h2 mt-4">{m.name}</h2>
+            <div className="prose-site t-body mt-6 max-w-2xl text-black/80">
+              {m.bio.map((para) => <p key={para}>{para}</p>)}
+            </div>
+            {m.isPlaceholderBio && <Note>{t.common.placeholderNote}</Note>}
+          </Reveal>
+        </article>
+      ))}
+      <JsonLd data={members.map((m) => ({ "@context": "https://schema.org", "@type": "Person", name: m.name, jobTitle: m.role, image: m.image }))} />
     </>
   );
 }
