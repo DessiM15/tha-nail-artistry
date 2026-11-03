@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { wixUrl } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
@@ -26,7 +27,7 @@ export default async function WorkshopsPage({ params }: PageProps<"/[locale]/wor
   const list = p.items.filter((w) => w.slug !== "skills-workshop-membership");
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.kicker} h1={p.h1} lede={p.text} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.kicker} h1={p.h1} lede={p.text} crumbs={crumbs} images={heroImages(locale, "workshops")} />
 
       <Section tone="white" labelledBy="workshop-list">
         <Container>

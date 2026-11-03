@@ -5,6 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { enrollment } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, FeatureGrid, ProgramCards } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, LeafDivider, Section } from "@/components/ui/Primitives";
@@ -22,7 +23,7 @@ export default async function TuitionPage({ params }: PageProps<"/[locale]/tuiti
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/tuition" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro[0]} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro[0]} crumbs={crumbs} images={heroImages(locale, "tuition")}>
         <Button href={href("/book-a-tour")}>{p.cta}</Button>
         <Button href={href("/financial-aid")} variant="secondary" icon={false}>{t.nav[0].children![5].label}</Button>
       </PageHero>

@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, Steps } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
@@ -21,7 +22,7 @@ export default async function ApplyPage({ params }: PageProps<"/[locale]/apply">
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/apply" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "apply")}>
         <Button href={wixLinks.apply} external title={t.common.opensWix}>{p.cta}</Button>
         <Button href={href("/book-a-tour")} variant="secondary" icon={false}>{t.common.bookTour}</Button>
       </PageHero>

@@ -37,18 +37,21 @@ interface Props {
   lede?: string;
   crumbs: Crumb[];
   image?: { src: string; alt: string; priority?: boolean; landscape?: boolean };
+  /** Two or three photos: the first leads in a tall arch, the rest stack beside it. */
+  images?: { src: string; alt: string }[];
   children?: ReactNode;
   tone?: "marble" | "black";
 }
 
 /** Consistent top-of-page block: breadcrumbs, eyebrow, SEO H1 and lede on marble (or black). */
-export function PageHero({ locale, eyebrow, h1, lede, crumbs, image, children, tone = "marble" }: Props) {
+export function PageHero({ locale, eyebrow, h1, lede, crumbs, image, images, children, tone = "marble" }: Props) {
   const dark = tone === "black";
+  const hasMedia = Boolean(image || (images && images.length));
   return (
     <section className={`${dark ? "on-dark bg-black text-white" : "bg-marble text-black"} relative overflow-hidden`}>
       {!dark && <BrandBlobs variant="hero" opacity={0.38} />}
-      <Container className={`relative pb-12 pt-8 sm:pb-14 sm:pt-10 lg:pb-16 lg:pt-10 ${image ? "grid items-center gap-10 lg:grid-cols-12" : ""}`}>
-        <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
+      <Container className={`relative pb-12 pt-8 sm:pb-14 sm:pt-10 lg:pb-16 lg:pt-10 ${hasMedia ? "grid items-center gap-10 lg:grid-cols-12" : ""}`}>
+        <div className={hasMedia ? "lg:col-span-7" : "max-w-4xl"}>
           <Breadcrumbs locale={locale} crumbs={crumbs} tone={dark ? "light" : "dark"} />
           <div className="mt-8 sm:mt-10">
             {eyebrow && <Eyebrow tone={dark ? "lavender" : "dark"}>{eyebrow}</Eyebrow>}
@@ -57,6 +60,20 @@ export function PageHero({ locale, eyebrow, h1, lede, crumbs, image, children, t
             {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
           </div>
         </div>
+        {!image && images && images.length > 0 && (
+          <Reveal delay={120} className="lg:col-span-5">
+            <div className="grid grid-cols-3 grid-rows-2 gap-3 sm:gap-4">
+              <div className="arch relative col-span-2 row-span-2 aspect-[4/5] overflow-hidden">
+                <Image src={images[0].src} alt={images[0].alt} fill priority className="drift object-cover" sizes="(min-width: 1024px) 28vw, 66vw" />
+              </div>
+              {images.slice(1, 3).map((img, i) => (
+                <div key={img.src} className={`relative min-h-0 overflow-hidden ${i === 0 ? "rounded-t-3xl rounded-b-2xl" : "rounded-b-3xl rounded-t-2xl"}`}>
+                  <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(min-width: 1024px) 14vw, 33vw" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        )}
         {image && (
           <Reveal delay={120} className="lg:col-span-5">
             <div className={`relative w-full ${image.landscape ? "aspect-[4/3] overflow-hidden rounded-3xl" : "arch aspect-[4/5] max-h-[26rem] lg:max-h-none"}`}>

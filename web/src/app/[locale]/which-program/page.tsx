@@ -3,6 +3,7 @@ import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { ProgramCards } from "@/components/sections/Blocks";
 import { ProgramPicker } from "@/components/quiz/ProgramPicker";
 import { Container, Section } from "@/components/ui/Primitives";
@@ -20,7 +21,7 @@ export default async function WhichProgramPage({ params }: PageProps<"/[locale]/
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/which-program" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} images={heroImages(locale, "whichProgram")} />
       <Section tone="marble" size="sm">
         <Container className="max-w-3xl">
           <ProgramPicker locale={locale} quiz={p} programs={t.pages.programs} />

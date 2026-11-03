@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { business } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, TextLink } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
@@ -21,7 +22,7 @@ export default async function PressPage({ params }: PageProps<"/[locale]/press">
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/press" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} images={heroImages(locale, "press")} />
       <Section tone="white">
         <Container>
           <ul className="grid gap-6">

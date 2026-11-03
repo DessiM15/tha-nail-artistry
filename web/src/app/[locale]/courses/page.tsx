@@ -4,6 +4,7 @@ import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, FeatureGrid, ProgramCards } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, LeafDivider, Section } from "@/components/ui/Primitives";
@@ -21,7 +22,7 @@ export default async function CoursesPage({ params }: PageProps<"/[locale]/cours
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/courses" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "courses")}>
         <Button href={href("/tuition")} variant="primary">{p.tuitionCta}</Button>
         <Button href={href("/book-a-tour")} variant="secondary" icon={false}>{p.tourCta}</Button>
       </PageHero>

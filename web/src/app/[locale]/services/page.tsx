@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { WIX_BASE_URL, features } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, WorkGallery } from "@/components/sections/Blocks";
 import { ServicesBrowser } from "@/components/sections/ServicesBrowser";
 import { founderSet } from "@/content/work";
@@ -23,7 +24,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/services" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} images={heroImages(locale, "services")}>
         {features.friendsFamilyPage && <Button href={href("/friends-and-family")} variant="link">{p.friendsFamilyCta}</Button>}
       </PageHero>
 

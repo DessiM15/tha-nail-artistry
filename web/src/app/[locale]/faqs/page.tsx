@@ -3,6 +3,7 @@ import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand } from "@/components/sections/Blocks";
 import { Accordion } from "@/components/ui/Accordion";
 import { Container, Section } from "@/components/ui/Primitives";
@@ -19,7 +20,7 @@ export default async function FaqPage({ params }: PageProps<"/[locale]/faqs">) {
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/faqs" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} crumbs={crumbs} images={heroImages(locale, "faqs")} />
       <Section tone="white" size="sm">
         <Container className="max-w-4xl"><Accordion items={p.items} /></Container>
       </Section>

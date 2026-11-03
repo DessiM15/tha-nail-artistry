@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { business } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -23,7 +24,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${business.address.street}, ${business.address.city}, ${business.address.region} ${business.address.postalCode}`)}&output=embed`;
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs} images={heroImages(locale, "contact")}>
         <Button href={href("/faqs")} variant="secondary" icon={false}>{p.faqCta}</Button>
         <Button href={href("/book-a-tour")}>{p.tourCta}</Button>
       </PageHero>

@@ -3,6 +3,7 @@ import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, FeatureGrid } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
@@ -20,7 +21,7 @@ export default async function FinancialAidPage({ params }: PageProps<"/[locale]/
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/financial-aid" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs}>
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "financialAid")}>
         <Button href={href("/book-a-tour")}>{t.common.bookTour}</Button>
         <Button href={href("/tuition")} variant="secondary" icon={false}>{t.nav[0].children![4].label}</Button>
       </PageHero>

@@ -8,7 +8,8 @@ export function wixUrl(path: string): string {
 /** Every Wix-hosted destination the new site links to, in one place. */
 export const wixLinks = {
   apply: wixUrl("/apply"),
-  login: wixUrl("/account/my-account"),
+  /** Members area lives at the site root on this Wix site. My Subscriptions is where payment plans show. */
+  login: wixUrl("/my-subscriptions"),
   cart: wixUrl("/cart-page"),
   tourInPerson: wixUrl("/service-page/in-person-tour"),
   tourVirtual: wixUrl("/service-page/virtual-tour"),

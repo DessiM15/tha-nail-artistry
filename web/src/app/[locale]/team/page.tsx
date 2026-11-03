@@ -8,6 +8,7 @@ import { activeMembers, joinNames, requestNow } from "@/lib/team";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
+import { heroImages } from "@/content/heroImages";
 import { CTABand, Note } from "@/components/sections/Blocks";
 import { Container, Eyebrow, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -26,7 +27,7 @@ export default async function TeamPage({ params }: PageProps<"/[locale]/team">) 
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/team" }];
   return (
     <>
-      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} />
+      <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "team")} />
 
       <Section tone="white">
         <Container className="space-y-20 lg:space-y-28">
