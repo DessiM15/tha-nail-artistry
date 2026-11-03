@@ -29,8 +29,16 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
   const basePath = stripLocale(pathname);
 
   // Close everything on navigation (state adjusted during render, per React guidance)
+  // After navigating, hover and focus must not reopen the dropdown until the pointer leaves it or returns to a trigger.
+  const [hoverSuppressed, setHoverSuppressed] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
-  if (lastPath !== pathname) { setLastPath(pathname); setOpen(false); setOpenGroup(null); }
+  if (lastPath !== pathname) { setLastPath(pathname); setOpen(false); setOpenGroup(null); setHoverSuppressed(true); }
+
+  // The clicked link keeps focus after a client-side navigation, which would hold the menu open via focus-within.
+  useEffect(() => {
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && navRef.current?.contains(active)) active.blur();
+  }, [pathname]);
 
   // Escape closes; lock body scroll while the drawer is open
   useEffect(() => {
@@ -68,6 +76,8 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
                 <li key={group.label} className="group relative">
                   <button
                     type="button"
+                    onPointerEnter={() => setHoverSuppressed(false)}
+                    onFocus={() => setHoverSuppressed(false)}
                     className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[0.9rem] font-semibold transition-colors hover:bg-black/5 ${group.children.some((c) => isActive(c.href)) ? "text-black" : "text-black/75"}`}
                     aria-expanded={openGroup === i}
                     aria-controls={`menu-${i}`}
@@ -78,7 +88,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
                   </button>
                   <div
                     id={`menu-${i}`}
-                    className={`absolute left-1/2 top-full z-50 w-[22rem] -translate-x-1/2 pt-3 ${openGroup === i ? "block" : "hidden group-hover:block group-focus-within:block"}`}
+                    className={`absolute left-1/2 top-full z-50 w-[22rem] -translate-x-1/2 pt-3 ${openGroup === i ? "block" : hoverSuppressed ? "hidden" : "hidden group-hover:block group-focus-within:block"}`}
                   >
                     <ul className="rounded-2xl border border-black/10 bg-white p-2 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
                       {group.children.map((item) => (
@@ -87,6 +97,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
                             href={localeHref(locale, item.href)}
                             className={`block rounded-xl px-3.5 py-2.5 transition-colors hover:bg-black/[0.04] ${isActive(item.href) ? "bg-black/[0.04]" : ""}`}
                             aria-current={isActive(item.href) ? "page" : undefined}
+                            onClick={(e) => { setHoverSuppressed(true); setOpenGroup(null); e.currentTarget.blur(); }}
                           >
                             <span className="block text-[0.9rem] font-semibold">{item.label}</span>
                             {item.description && <span className="block text-[0.78rem] text-black/65">{item.description}</span>}
