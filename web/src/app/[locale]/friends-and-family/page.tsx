@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { features } from "@/config/site";
 import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
@@ -9,12 +11,14 @@ import { Container, LeafDivider, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/friends-and-family">): Promise<Metadata> {
+  if (!features.friendsFamilyPage) notFound();
   const { locale, t } = await getPage(params);
   const p = t.pages.friendsFamily;
   return buildMetadata({ locale, path: "/friends-and-family", title: p.title, description: p.description, kicker: p.eyebrow, noIndex: true });
 }
 
 export default async function FriendsFamilyPage({ params }: PageProps<"/[locale]/friends-and-family">) {
+  if (!features.friendsFamilyPage) notFound();
   const { locale, t } = await getPage(params);
   const p = t.pages.friendsFamily;
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/friends-and-family" }];

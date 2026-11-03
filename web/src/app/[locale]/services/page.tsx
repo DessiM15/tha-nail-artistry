@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
-import { WIX_BASE_URL } from "@/config/site";
+import { WIX_BASE_URL, features } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, WorkGallery } from "@/components/sections/Blocks";
 import { ServicesBrowser } from "@/components/sections/ServicesBrowser";
@@ -24,7 +24,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
   return (
     <>
       <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.intro} crumbs={crumbs}>
-        <Button href={href("/friends-and-family")} variant="link">{p.friendsFamilyCta}</Button>
+        {features.friendsFamilyPage && <Button href={href("/friends-and-family")} variant="link">{p.friendsFamilyCta}</Button>}
       </PageHero>
 
       <Section tone="white">

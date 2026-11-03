@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/config/site";
+import { SITE_URL, features } from "@/config/site";
 import { localeHref, locales } from "@/i18n/config";
 import { en } from "@/content/en";
 
@@ -21,10 +21,8 @@ const staticPaths: { path: string; priority: number; freq: MetadataRoute.Sitemap
   { path: "/press", priority: 0.5, freq: "yearly" },
   { path: "/careers", priority: 0.5, freq: "monthly" },
   { path: "/careers/manicurist-instructor", priority: 0.4, freq: "monthly" },
-  { path: "/scholarships", priority: 0.6, freq: "monthly" },
+  { path: "/readiness-assessment", priority: 0.7, freq: "monthly" },
   { path: "/waitlist", priority: 0.5, freq: "monthly" },
-  { path: "/graduation", priority: 0.3, freq: "yearly" },
-  { path: "/friends-and-family", priority: 0.3, freq: "yearly" },
   { path: "/refund-policy", priority: 0.3, freq: "yearly" },
   { path: "/privacy-policy", priority: 0.3, freq: "yearly" },
 ];
@@ -32,8 +30,12 @@ const staticPaths: { path: string; priority: number; freq: MetadataRoute.Sitemap
 export default function sitemap(): MetadataRoute.Sitemap {
   const programs = en.pages.programs.map((p) => ({ path: `/courses/${p.slug}`, priority: 0.9, freq: "monthly" as const }));
   const workshops = en.pages.workshops.items.map((w) => ({ path: `/workshops/${w.slug}`, priority: 0.6, freq: "monthly" as const }));
-  const all = [...staticPaths, ...programs, ...workshops];
-  const lastModified = new Date("2026-10-26T00:00:00Z");
+  const events = [
+    ...(features.graduationPage ? [{ path: "/graduation", priority: 0.3, freq: "yearly" as const }] : []),
+    ...(features.friendsFamilyPage ? [{ path: "/friends-and-family", priority: 0.3, freq: "yearly" as const }] : []),
+  ];
+  const all = [...staticPaths, ...programs, ...workshops, ...events];
+  const lastModified = new Date("2026-11-03T00:00:00Z");
 
   return all.flatMap((entry) =>
     locales.map((locale) => ({

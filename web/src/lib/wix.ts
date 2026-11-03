@@ -12,8 +12,6 @@ export const wixLinks = {
   cart: wixUrl("/cart-page"),
   tourInPerson: wixUrl("/service-page/in-person-tour"),
   tourVirtual: wixUrl("/service-page/virtual-tour"),
-  scholarshipForm: wixUrl("/scholarships"),
-  waitlistForm: wixUrl("/waitlist"),
   instructorApplication: wixUrl("/nailinstructorposition"),
   graduationTickets: wixUrl("/product-page/adult-graduation-tickets"),
   store: wixUrl("/category/all-products"),

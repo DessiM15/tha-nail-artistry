@@ -17,6 +17,15 @@ Everything below is either mock content or an unresolved contradiction found on 
 | 9 | Workshop descriptions | `pages.workshops.items` | Only State Board Training and the Membership had descriptions on Wix. The other nine are drafts. |
 | 10 | Service descriptions | `pages.services.items` | Only Acrylic Full Set had a description on Wix. The rest are one-line drafts. Prices and durations are from Wix. |
 
+## Changes from Gen's review (November 3, 2026)
+
+- Work-study and the $2,000 scholarship are gone from the site. The scholarships route redirects to Financial Aid. Financial Aid now lists payment plans, pay-in-full discount, Klarna or Afterpay and promotions.
+- Graduation Day and Friends & Family Day are switched off with `features` in `web/src/config/site.ts` (removed from nav and sitemap, routes return 404). Flip either flag to `true` to bring the page back.
+- The waitlist is now a native form (program of interest: Core, Specialty, Complete or Undecided; how they heard about us; typed signature). Questions email is contact@thanailartistry.com.
+- New Admissions Readiness Assessment at `/readiness-assessment`, built from Gen's PDF spec: 10 questions one at a time, hidden scoring on questions 1 to 4, confirmation screen that sends people to Book a Tour. Book a Tour prompts people to take it first. Linked from the More menu.
+- Both forms submit through Web3Forms (key in `NEXT_PUBLIC_WEB3FORMS_KEY`). The free plan emails the admissions inbox but cannot send the applicant an auto-reply; the on-screen confirmation covers that. Upgrading to Web3Forms Pro adds the auto-reply if Gen wants it.
+- Still open: next cohort start date and enrollment deadline (Gen and Dessi to decide), then update `enrollment` in `web/src/config/site.ts`.
+
 ## Nice to have
 
 - Gen's and Rayven's "View My Work" gallery photos (currently the four nail photos repeat).

@@ -100,6 +100,42 @@ export interface QuizQuestion {
   options: QuizOption[];
 }
 
+/** Shared strings for the native (Web3Forms) forms. */
+export interface FormCopy {
+  fullName: string;
+  phone: string;
+  email: string;
+  submit: string;
+  sending: string;
+  successHeading: string;
+  successText: string;
+  errorText: string;
+  errorCta: string;
+  privacy: string;
+  privacyLink: string;
+}
+
+export interface Choice {
+  /** Stable value sent in the notification email (English, staff-facing). */
+  value: string;
+  label: string;
+}
+
+export interface AssessmentOption {
+  /** Letter from the admissions spec (A to D). Sent with the answer so staff can match it to the rubric. */
+  code: "A" | "B" | "C" | "D";
+  label: string;
+  /** Only questions 1 to 4 carry points. */
+  points?: number;
+}
+
+export interface AssessmentQuestion {
+  /** Staff-facing topic, in English, used as the field name in the email. */
+  topic: string;
+  question: string;
+  options: AssessmentOption[];
+}
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -280,10 +316,6 @@ export interface SiteContent {
       noCombine: string;
       optionsHeading: string;
       options: Feature[];
-      scholarshipCta: string;
-      workStudyHeading: string;
-      workStudyIntro: string;
-      workStudy: { title: string; items: string[] }[];
       readyHeading: string;
       readyText: string;
       cta: string;
@@ -297,18 +329,37 @@ export interface SiteContent {
       readyHeading: string;
       tourCta: string;
     };
-    scholarships: PageMeta & {
+    waitlist: PageMeta & {
       intro: string;
-      detailsHeading: string;
-      details: string;
-      responsibleHeading: string;
-      responsible: string[];
-      qualifyHeading: string;
-      steps: Feature[];
-      cta: string;
-      ctaNote: string;
+      note: string;
+      emailLabel: string;
+      form: FormCopy & {
+        heading: string;
+        program: string;
+        programs: Choice[];
+        heard: string;
+        heardOptions: Choice[];
+        heardOther: string;
+        signature: string;
+        signatureHelp: string;
+      };
     };
-    waitlist: PageMeta & { intro: string; cta: string; note: string; emailLabel: string };
+    assessment: PageMeta & {
+      intro: string;
+      time: string;
+      bullets: string[];
+      start: string;
+      questions: AssessmentQuestion[];
+      next: string;
+      back: string;
+      /** "{n}" and "{total}" are replaced */
+      progress: string;
+      contactStep: string;
+      contactHeading: string;
+      contactText: string;
+      form: FormCopy;
+      done: { kicker: string; heading: string; text: string[]; nextStep: string; cta: string; home: string };
+    };
     workshops: PageMeta & {
       kicker: string;
       heading: string;
@@ -347,6 +398,7 @@ export interface SiteContent {
       knowHeading: string;
       know: Feature[];
       closing: string;
+      assessment: { kicker: string; heading: string; text: string; cta: string; skip: string };
       facilityKicker: string;
       facilityHeading: string;
       facility: { src: string; alt: string }[];

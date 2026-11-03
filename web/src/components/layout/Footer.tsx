@@ -12,6 +12,7 @@ export function Footer({ locale, t }: { locale: Locale; t: SiteContent }) {
   const L = (p: string) => localeHref(locale, p);
   const programs = t.nav[0].children ?? [];
   const academy = t.nav[1].children ?? [];
+  const more = (href: string) => t.nav[5].children?.find((i) => i.href === href)?.label ?? "";
 
   return (
     <footer className="on-dark bg-black text-white">
@@ -57,11 +58,11 @@ export function Footer({ locale, t }: { locale: Locale; t: SiteContent }) {
             <div className="col-span-2 sm:col-span-1">
               <h2 className="t-eyebrow text-lavender">{c.footerCustomerCare}</h2>
               <ul className="mt-4 space-y-2.5 text-[0.9rem]">
-                <li><Link href={L("/contact")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{t.nav[5].children?.[1].label}</Link></li>
-                <li><Link href={L("/faqs")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{t.nav[5].children?.[0].label}</Link></li>
+                <li><Link href={L("/contact")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{more("/contact")}</Link></li>
+                <li><Link href={L("/faqs")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{more("/faqs")}</Link></li>
                 <li><Link href={L("/book-a-tour")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{t.nav[4].label}</Link></li>
-                <li><Link href={L("/refund-policy")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{t.nav[5].children?.[6].label}</Link></li>
-                <li><Link href={L("/privacy-policy")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{t.nav[5].children?.[7].label}</Link></li>
+                <li><Link href={L("/refund-policy")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{more("/refund-policy")}</Link></li>
+                <li><Link href={L("/privacy-policy")} className="text-white/80 hover:text-white hover:underline underline-offset-4">{more("/privacy-policy")}</Link></li>
                 <li><a href={wixLinks.login} className="inline-flex items-center gap-1 text-white/80 hover:text-white hover:underline underline-offset-4" title={c.opensWix}>{c.login}<ArrowUpRight width={13} height={13} /></a></li>
               </ul>
             </div>

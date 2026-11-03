@@ -17,6 +17,21 @@ export const WIX_BASE_URL =
   process.env.NEXT_PUBLIC_WIX_BASE_URL?.replace(/\/$/, "") ??
   "https://www.thanailartistry.com";
 
+/**
+ * Web3Forms access key. Public by design (it only identifies the inbox), so it is safe in NEXT_PUBLIC_.
+ * Leave empty to disable the native forms (they fall back to a mailto link).
+ */
+export const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+
+/**
+ * Pages and offers Gen can switch on or off without touching copy.
+ * Off = removed from nav, sitemap and search, and the route returns 404.
+ */
+export const features: Record<"graduationPage" | "friendsFamilyPage", boolean> = {
+  graduationPage: false,
+  friendsFamilyPage: false,
+};
+
 export const business = {
   name: "Tha Nail Artistry Academy",
   shortName: "Tha Nail Artistry",

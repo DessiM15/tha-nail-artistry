@@ -13,7 +13,29 @@ Right now Wix owns `www.thanailartistry.com`. When the new site takes that addre
 
 Every link on the new site that points into Wix is built from one setting, `NEXT_PUBLIC_WIX_BASE_URL`. Change that one value to `https://portal.thanailartistry.com` and all links update at once.
 
-## Step by step for Gen (about 20 minutes, plus DNS wait time)
+## Status (November 3, 2026)
+
+Phase one is done. Gen added `portal.thanailartistry.com` in Wix, Wix created the DNS record itself and the portal address is live over HTTPS as a secondary domain that redirects to www. The Vercel project has both `thanailartistry.com` and `www.thanailartistry.com` attached and the production environment already points Wix links at the portal. Nothing students see has changed yet.
+
+What we learned on the way:
+
+- DNS is managed inside Wix (nameservers are `ns2.wixdns.net` and `ns3.wixdns.net`), so every DNS step happens in the Wix dashboard.
+- Email runs on Google Workspace through MX records in that same Wix DNS. Never move the nameservers away from Wix. Edit individual records only.
+- The subdomain option is not in the three-dot menu on the site-level Domains page. Gen used "Add an Existing Domain" and Wix handled the record.
+
+## Launch day (phase two), in this order
+
+1. Smart Scale confirms the latest deploy on the vercel.app address looks right.
+2. Gen, in Wix Settings then Domains: next to `portal.thanailartistry.com` click **Set as primary**. From this moment www redirects to portal, so steps 3 and 4 follow immediately.
+3. Gen, in Wix: three dots next to `thanailartistry.com`, then **Manage DNS records**. Change the A record for the root (`@`) to `76.76.21.21` and set `www` to either an A record `76.76.21.21` or a CNAME `cname.vercel-dns.com`. Leave every MX, TXT and other record alone. If Wix locks those two records because www is still assigned to the site, use **Unassign from this site** on `thanailartistry.com` first. Portal keeps working because it is primary.
+4. Wait for Vercel to show both domains as valid (it emails when verification completes). Load `https://www.thanailartistry.com` and `https://thanailartistry.com`.
+5. Test from the live site: Student Login, Apply, a tour booking link, the waitlist form and the readiness assessment. The two forms email the inbox tied to the Web3Forms key.
+
+## Old links keep working
+
+The new site forwards every path that only exists on Wix (student account, bookings, store, payment request page, intake form) to the portal, so emails and bookmarks students already have still land in the right place. The list lives in `web/next.config.ts`.
+
+## Original step by step (kept for reference)
 
 ### 1. Find out where the domain's DNS is managed
 Log in to Wix, open **Settings > Domains**. If it says the domain was purchased through Wix, DNS is managed in Wix. If it was connected from GoDaddy, Namecheap or another registrar, DNS is managed there. Either way the steps below work; only the screen you type records into changes.

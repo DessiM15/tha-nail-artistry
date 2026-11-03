@@ -18,16 +18,32 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/book-a-t
 }
 
 export default async function TourPage({ params }: PageProps<"/[locale]/book-a-tour">) {
-  const { locale, t } = await getPage(params);
+  const { locale, t, href } = await getPage(params);
   const p = t.pages.tour;
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/book-a-tour" }];
   return (
     <>
       <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} image={{ src: "/images/facility/lobby-reception.jpg", alt: p.heroAlt, priority: true, landscape: true }} />
 
+      <Section tone="lavenderTint" size="sm" labelledBy="assessment-heading">
+        <Container>
+          <Reveal className="grid gap-6 rounded-3xl bg-white p-8 ring-1 ring-black/10 sm:p-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-8">
+              <Eyebrow>{p.assessment.kicker}</Eyebrow>
+              <h2 id="assessment-heading" className="t-h3 mt-3">{p.assessment.heading}</h2>
+              <p className="t-body mt-3 text-black/75">{p.assessment.text}</p>
+            </div>
+            <div className="flex flex-col items-start gap-3 lg:col-span-4 lg:items-end">
+              <Button href={href("/readiness-assessment")}>{p.assessment.cta}</Button>
+              <a href="#tour-options" className="text-[0.85rem] font-semibold text-black/65 underline-offset-4 hover:underline">{p.assessment.skip}</a>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
       <Section tone="white" labelledBy="tour-options">
         <Container>
-          <Reveal><h2 id="tour-options" className="t-h2">{p.intro}</h2></Reveal>
+          <Reveal><h2 id="tour-options" className="t-h2 scroll-mt-28">{p.intro}</h2></Reveal>
           <ul className="mt-10 grid gap-5 md:grid-cols-2">
             {[{ ...p.inPerson, href: wixLinks.tourInPerson, dark: true }, { ...p.virtual, href: wixLinks.tourVirtual, dark: false }].map((o, i) => (
               <Reveal as="li" key={o.title} delay={i * 90} className={`flex flex-col rounded-3xl p-8 sm:p-10 ${o.dark ? "on-dark bg-black text-white" : "bg-marble ring-1 ring-black/10"}`}>
