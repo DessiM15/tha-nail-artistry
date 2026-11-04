@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { localeHref, stripLocale, type Locale } from "@/i18n/config";
 import type { NavGroup, SiteContent } from "@/content/types";
-import { Chevron, Close, Menu, Phone, ArrowUpRight, ArrowRight } from "@/components/ui/Icons";
+import { Chevron, Close, Menu, Phone, ArrowRight } from "@/components/ui/Icons";
 
 interface Props {
   locale: Locale;
