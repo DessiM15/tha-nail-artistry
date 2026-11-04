@@ -136,7 +136,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
           </a>
           <a href={applyHref} className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lavender px-4 py-2.5 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime sm:inline-flex">
             {common.applyNow}
-            <ArrowUpRight width={14} height={14} />
+            <ArrowRight width={14} height={14} />
           </a>
           <button
             ref={menuBtn}
