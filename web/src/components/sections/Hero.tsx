@@ -4,7 +4,6 @@ import { BrandBlobs, Container } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { enrollment } from "@/config/site";
 import { formatDate } from "@/lib/format";
-import { wixLinks } from "@/lib/wix";
 import { localeHref, type Locale } from "@/i18n/config";
 import type { SiteContent } from "@/content/types";
 
@@ -41,7 +40,7 @@ export function Hero({ locale, t }: { locale: Locale; t: SiteContent }) {
             <p className="t-lede mt-7 max-w-xl text-black/70">{h.lede}</p>
           </div>
           <Reveal delay={120} className="mt-9 flex flex-wrap items-center gap-3">
-            <Button href={wixLinks.apply} size="lg" external title={c.opensWix}>{h.primary}</Button>
+            <Button href={localeHref(locale, "/readiness-assessment")} size="lg">{h.primary}</Button>
             <Button href={localeHref(locale, "/courses")} variant="secondary" size="lg">{h.secondary}</Button>
           </Reveal>
           <Reveal delay={200}>

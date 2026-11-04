@@ -258,6 +258,8 @@ export interface SiteContent {
       missionHeading: string;
       mission: string;
       workHeading: string;
+      /** One per entry in content/work.ts founderWork, same order. */
+      workAlts: string[];
       pressKicker: string;
       pressQuote: string;
       pressCta: string;

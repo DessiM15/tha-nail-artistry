@@ -9,6 +9,7 @@ import { wixLinks } from "@/lib/wix";
 import { JsonLd, organizationJsonLd } from "@/lib/jsonld";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
+import { localeHref } from "@/i18n/config";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
@@ -56,10 +57,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <a href="#main" className="skip-link">{t.common.skipToContent}</a>
         <ScrollToTop />
         <AnnouncementBar locale={locale} common={t.common} />
-        <Header locale={locale} nav={t.nav} common={t.common} phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} applyHref={wixLinks.apply} loginHref={wixLinks.login} />
+        <Header locale={locale} nav={t.nav} common={t.common} phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} applyHref={localeHref(locale, "/readiness-assessment")} loginHref={wixLinks.login} />
         <main id="main" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer locale={locale} t={t} />
-        <MobileCallBar common={t.common} applyHref={wixLinks.apply} />
+        <MobileCallBar common={t.common} applyHref={localeHref(locale, "/readiness-assessment")} />
         <JsonLd data={organizationJsonLd(locale)} />
       </body>
     </html>

@@ -134,7 +134,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
           <a href={loginHref} className="hidden items-center whitespace-nowrap rounded-full px-3 py-2 text-[0.85rem] font-semibold text-black/70 hover:bg-black/5 2xl:inline-flex" title={common.opensWix}>
             {common.login}
           </a>
-          <a href={applyHref} className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lavender px-4 py-2.5 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime sm:inline-flex" title={common.opensWix}>
+          <a href={applyHref} className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lavender px-4 py-2.5 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime sm:inline-flex">
             {common.applyNow}
             <ArrowUpRight width={14} height={14} />
           </a>

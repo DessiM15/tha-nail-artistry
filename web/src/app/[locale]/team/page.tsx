@@ -6,7 +6,6 @@ import { buildMetadata } from "@/lib/seo";
 import { fill } from "@/lib/format";
 import { activeMembers, joinNames, requestNow } from "@/lib/team";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
-import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
 import { heroImages } from "@/content/heroImages";
 import { CTABand, Note } from "@/components/sections/Blocks";
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/team">):
 }
 
 export default async function TeamPage({ params }: PageProps<"/[locale]/team">) {
-  const { locale, t } = await getPage(params);
+  const { locale, t, href } = await getPage(params);
   const p = t.pages.team;
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/team" }];
   return (
@@ -37,7 +36,7 @@ export default async function TeamPage({ params }: PageProps<"/[locale]/team">) 
         </Container>
       </Section>
 
-      <CTABand locale={locale} heading={p.closing} primary={p.cta} primaryHref={wixLinks.apply} primaryExternal secondary={t.common.bookTour} />
+      <CTABand locale={locale} heading={p.closing} primary={p.cta} primaryHref={href("/readiness-assessment")} secondary={t.common.bookTour} />
       <JsonLd data={breadcrumbJsonLd(locale, crumbs)} />
     </>
   );

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getPage } from "@/lib/page";
 import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
-import { wixLinks } from "@/lib/wix";
 import { PageHero } from "@/components/sections/PageHero";
 import { heroImages } from "@/content/heroImages";
 import { CTABand, Steps } from "@/components/sections/Blocks";
@@ -23,7 +22,7 @@ export default async function ApplyPage({ params }: PageProps<"/[locale]/apply">
   return (
     <>
       <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "apply")}>
-        <Button href={wixLinks.apply} external title={t.common.opensWix}>{p.cta}</Button>
+        <Button href={href("/readiness-assessment")}>{p.cta}</Button>
         <Button href={href("/book-a-tour")} variant="secondary" icon={false}>{t.common.bookTour}</Button>
       </PageHero>
 

@@ -76,8 +76,8 @@ export const business = {
 
 /** Enrollment calendar. ISO dates; formatted per locale at render time. */
 export const enrollment = {
-  nextClassStart: "2026-11-09",
-  enrollmentDeadline: "2026-10-29",
+  nextClassStart: "2026-11-30",
+  enrollmentDeadline: "2026-11-20",
   applicationFee: 150,
   downPayment: 900,
 } as const;

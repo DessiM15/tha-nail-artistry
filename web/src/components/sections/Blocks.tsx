@@ -10,7 +10,6 @@ import type { Feature, Program, Review, SiteContent } from "@/content/types";
 import { localeHref, type Locale } from "@/i18n/config";
 import { business, enrollment } from "@/config/site";
 import { daysLabel, formatDate } from "@/lib/format";
-import { wixLinks } from "@/lib/wix";
 import { allSets, workImages } from "@/content/work";
 
 /* ---------- Feature grid (home "why us", tuition "what's included") ---------- */
@@ -232,7 +231,7 @@ export function CTABand({ locale, heading, text, primary, secondary, primaryHref
           <h2 id="cta-heading" className="t-h2">{heading}</h2>
           {text && <p className="t-lede mt-4 text-white/75">{text}</p>}
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href={primaryHref ?? wixLinks.apply} variant="lime" size="lg" external={primaryExternal ?? !primaryHref}>{primary}</Button>
+            <Button href={primaryHref ?? localeHref(locale, "/readiness-assessment")} variant="lime" size="lg" external={primaryExternal ?? false}>{primary}</Button>
             {secondary && <Button href={secondaryHref ?? localeHref(locale, "/book-a-tour")} variant="onDarkOutline" size="lg" icon={false}>{secondary}</Button>}
           </div>
           <p className="mt-6 text-[0.8rem] text-white/55">{formatDate(enrollment.nextClassStart, locale)}</p>
@@ -243,8 +242,8 @@ export function CTABand({ locale, heading, text, primary, secondary, primaryHref
 }
 
 /* ---------- Work gallery ---------- */
-export function WorkGallery({ alts, heading, kicker, cta, compact = false, indices = allSets, prevLabel, nextLabel }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean; indices?: number[]; prevLabel: string; nextLabel: string }) {
-  const work = indices.map((i) => ({ i, ...workImages[i] }));
+export function WorkGallery({ alts, heading, kicker, cta, compact = false, indices = allSets, images, prevLabel, nextLabel }: { alts: string[]; heading?: string; kicker?: string; cta?: string; compact?: boolean; indices?: number[]; images?: readonly { src: string; w: number; h: number }[]; prevLabel: string; nextLabel: string }) {
+  const work = images ? images.map((img, i) => ({ i, ...img })) : indices.map((i) => ({ i, ...workImages[i] }));
   return (
     <Section tone="white" size={compact ? "sm" : "md"} labelledBy="gallery-heading">
       <Container>

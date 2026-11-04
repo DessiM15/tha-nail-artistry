@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { enrollment } from "@/config/site";
 import { formatDate } from "@/lib/format";
-import { localeHref, type Locale } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
+import { wixLinks } from "@/lib/wix";
 import type { SiteContent } from "@/content/types";
-import { ArrowRight } from "@/components/ui/Icons";
+import { ArrowUpRight } from "@/components/ui/Icons";
 
 export function AnnouncementBar({ locale, common }: { locale: Locale; common: SiteContent["common"] }) {
   const start = formatDate(enrollment.nextClassStart, locale);
@@ -21,10 +21,11 @@ export function AnnouncementBar({ locale, common }: { locale: Locale; common: Si
         <span className="hidden text-white/70 md:inline">
           {common.enrollmentDeadline}: {deadline}
         </span>
-        <Link href={localeHref(locale, "/apply")} className="inline-flex items-center gap-1 font-semibold text-lavender underline-offset-4 hover:underline">
+        {/* The one Apply Now that opens the Wix application itself. Every other Apply Now starts with the readiness assessment. */}
+        <a href={wixLinks.apply} className="inline-flex items-center gap-1 font-semibold text-lavender underline-offset-4 hover:underline" title={common.opensWix}>
           {common.applyNow}
-          <ArrowRight width={14} height={14} />
-        </Link>
+          <ArrowUpRight width={14} height={14} />
+        </a>
       </div>
     </div>
   );

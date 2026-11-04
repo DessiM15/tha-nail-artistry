@@ -5,7 +5,6 @@ import { buildMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, courseJsonLd } from "@/lib/jsonld";
 import { enrollment } from "@/config/site";
 import { formatDate } from "@/lib/format";
-import { wixLinks } from "@/lib/wix";
 import { en } from "@/content/en";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTABand, FeatureGrid, ProgramCards } from "@/components/sections/Blocks";
@@ -44,7 +43,7 @@ export default async function ProgramPage({ params }: PageProps<"/[locale]/cours
   return (
     <>
       <PageHero locale={locale} eyebrow={`${pp.kicker} · ${p.shortName}`} h1={p.h1} lede={p.intro} crumbs={crumbs} tone={p.featured ? "black" : "marble"}>
-        <Button href={wixLinks.apply} variant={p.featured ? "lime" : "primary"} external title={t.common.opensWix}>{t.common.applyNow}</Button>
+        <Button href={href("/readiness-assessment")} variant={p.featured ? "lime" : "primary"}>{t.common.applyNow}</Button>
         <Button href={href("/book-a-tour")} variant={p.featured ? "onDarkOutline" : "secondary"} icon={false}>{t.common.bookTour}</Button>
       </PageHero>
 
