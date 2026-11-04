@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { localeHref, stripLocale, type Locale } from "@/i18n/config";
 import type { NavGroup, SiteContent } from "@/content/types";
-import { Chevron, Close, Menu, Phone, ArrowUpRight } from "@/components/ui/Icons";
+import { Chevron, Close, Menu, Phone, ArrowUpRight, ArrowRight } from "@/components/ui/Icons";
 
 interface Props {
   locale: Locale;
@@ -191,7 +191,7 @@ export function Header({ locale, nav, common, phoneDisplay, phoneHref, applyHref
             )}
           </ul>
           <div className="mt-6 grid gap-3">
-            <a href={applyHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-lavender px-5 py-3.5 font-semibold text-black">{common.applyNow}<ArrowUpRight width={16} height={16} /></a>
+            <a href={applyHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-lavender px-5 py-3.5 font-semibold text-black">{common.applyNow}<ArrowRight width={16} height={16} /></a>
             <Link href={localeHref(locale, "/book-a-tour")} className="inline-flex items-center justify-center rounded-full px-5 py-3.5 font-semibold ring-1 ring-black/20">{common.bookTour}</Link>
             <a href={loginHref} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-[0.9rem] font-semibold text-black/70">{common.login}</a>
           </div>
