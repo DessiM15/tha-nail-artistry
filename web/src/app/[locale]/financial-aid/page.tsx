@@ -8,6 +8,9 @@ import { CTABand, FeatureGrid } from "@/components/sections/Blocks";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
+import { enrollment } from "@/config/site";
+import { tuition } from "@/config/tuition";
+import { fill, usd } from "@/lib/format";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/financial-aid">): Promise<Metadata> {
   const { locale, t } = await getPage(params);
@@ -19,6 +22,13 @@ export default async function FinancialAidPage({ params }: PageProps<"/[locale]/
   const { locale, t, href } = await getPage(params);
   const p = t.pages.financialAid;
   const crumbs = [{ name: t.common.breadcrumbHome, path: "/" }, { name: p.eyebrow!, path: "/financial-aid" }];
+  const amounts = {
+    down: usd(enrollment.downPayment),
+    core: usd(tuition.core.payInFull),
+    specialty: usd(tuition.specialty.payInFull),
+    complete: usd(tuition.complete.payInFull),
+  };
+  const options = p.options.map((o) => ({ ...o, text: fill(o.text, amounts) }));
   return (
     <>
       <PageHero locale={locale} eyebrow={p.eyebrow} h1={p.h1} lede={p.lede} crumbs={crumbs} images={heroImages(locale, "financialAid")}>
@@ -33,7 +43,8 @@ export default async function FinancialAidPage({ params }: PageProps<"/[locale]/
             <p className="mt-4 text-[0.85rem] font-semibold text-black/60">{p.noCombine}</p>
           </Reveal>
           <Reveal className="mt-14 max-w-2xl"><h2 id="options-heading" className="t-h2">{p.optionsHeading}</h2></Reveal>
-          <div className="mt-10"><FeatureGrid items={p.options} columns={2} /></div>
+          <div className="mt-10"><FeatureGrid items={options} columns={2} /></div>
+          <Reveal className="mt-10"><Button href={`${href("/tuition")}#pricing`} variant="link">{t.pages.tuition.pricing.heading}</Button></Reveal>
         </Container>
       </Section>
 

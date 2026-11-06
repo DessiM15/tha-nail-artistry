@@ -23,3 +23,8 @@ export function fill(template: string, vars: Record<string, string | number>): s
 export function daysLabel(common: { oneDayPerWeek: string; daysPerWeek: string }, n: number): string {
   return n === 1 ? common.oneDayPerWeek : fill(common.daysPerWeek, { n });
 }
+
+/** Whole-dollar amount, e.g. 10500 -> "$10,500". Same in both languages. */
+export function usd(n: number): string {
+  return `$${n.toLocaleString("en-US")}`;
+}

@@ -7,6 +7,8 @@ import { enrollment } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { heroImages } from "@/content/heroImages";
 import { CTABand, FeatureGrid, ProgramCards } from "@/components/sections/Blocks";
+import { TuitionTable } from "@/components/sections/TuitionTable";
+import { fill, usd } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, LeafDivider, Section } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -42,6 +44,20 @@ export default async function TuitionPage({ params }: PageProps<"/[locale]/tuiti
               {p.program.map((para) => <p key={para}>{para}</p>)}
             </div>
             <div className="mt-6"><Button href={href("/courses")} variant="link">{t.common.courseInfo}</Button></div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section tone="marble" labelledBy="pricing-heading" id="pricing">
+        <Container>
+          <Reveal className="max-w-2xl">
+            <h2 id="pricing-heading" className="t-h2">{p.pricing.heading}</h2>
+            <p className="t-lede mt-5 text-black/80">{p.pricing.text}</p>
+          </Reveal>
+          <div className="mt-10"><TuitionTable programs={t.pages.programs} l={p.pricing} /></div>
+          <Reveal className="mt-8 max-w-3xl">
+            <p className="t-body text-black/75">{fill(p.pricing.note, { down: usd(enrollment.downPayment) })}</p>
+            <p className="mt-3 text-[0.85rem] font-semibold text-black/60">{t.common.noCreditCheck}</p>
           </Reveal>
         </Container>
       </Section>

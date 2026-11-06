@@ -33,7 +33,7 @@ export interface Program {
   highlights: string[];
   curriculum: { title: string; text: string }[];
   includes: string[];
-  /** Leave undefined to show "Tuition shared during your tour". */
+  /** Optional one-line price for the program page. Full tuition lives in `config/tuition.ts`. */
   price?: string;
   featured?: boolean;
 }
@@ -307,6 +307,26 @@ export interface SiteContent {
       kitsHeading: string;
       kitsText: string;
       kitsAlt: string;
+      pricing: {
+        heading: string;
+        text: string;
+        plansAvailable: string;
+        /** Placeholders: {min} {max} */
+        range: string;
+        plan: string;
+        total: string;
+        monthly: string;
+        biweekly: string;
+        weekly: string;
+        payInFull: string;
+        payInFullNote: string;
+        /** Placeholder: {n} */
+        monthPlan: string;
+        /** Placeholder: {n} */
+        payments: string;
+        /** Placeholder: {down} */
+        note: string;
+      };
       paymentHeading: string;
       payment: string[];
       cta: string;
@@ -317,6 +337,7 @@ export interface SiteContent {
       noPell: string;
       noCombine: string;
       optionsHeading: string;
+      /** Placeholders in text: {down} {core} {specialty} {complete} */
       options: Feature[];
       readyHeading: string;
       readyText: string;
