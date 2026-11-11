@@ -10,6 +10,9 @@ import { defaultLocale, locales } from "@/i18n/config";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // The referral tracker is English only and lives outside the locale tree.
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return NextResponse.next();
+
   for (const locale of locales) {
     if (locale === defaultLocale) continue;
     if (pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)) {

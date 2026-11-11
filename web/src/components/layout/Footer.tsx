@@ -93,6 +93,8 @@ export function Footer({ locale, t }: { locale: Locale; t: SiteContent }) {
             <a href={agency.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-white/80 underline-offset-4 hover:text-lavender hover:underline">
               {agency.name}
             </a>
+            <span aria-hidden="true"> · </span>
+            <Link href="/admin" prefetch={false} rel="nofollow" className="underline-offset-4 hover:text-white hover:underline">Admin</Link>
           </p>
         </div>
       </div>

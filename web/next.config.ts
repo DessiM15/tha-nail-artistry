@@ -36,7 +36,6 @@ const wixOnlyPaths = [
   "/inquiry-services-page",
   "/nailinstructorposition",
   "/scholarship",
-  "/admin",
   "/home-redesign",
   "/_api/:path*",
 ];
