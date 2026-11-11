@@ -17,7 +17,7 @@ interface Props {
 }
 
 type Filter = "all" | "due" | "waiting" | "paid";
-type Editing = { kind: "referral"; referral: Referral | null } | { kind: "educator"; educator: Educator | null } | null;
+type Editing = { kind: "referral"; referral: Referral | null } | { kind: "educator"; educator: Educator | null; first?: boolean } | null;
 
 const idle: ActionResult = { ok: true, message: "" };
 
@@ -98,10 +98,8 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
             )}
             <button
               type="button"
-              disabled={educators.length === 0}
-              title={educators.length === 0 ? "Add an educator first" : undefined}
-              onClick={() => setEditing({ kind: "referral", referral: null })}
-              className="rounded-full bg-lavender px-4 py-2 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime disabled:opacity-60"
+              onClick={() => setEditing(educators.length === 0 ? { kind: "educator", educator: null, first: true } : { kind: "referral", referral: null })}
+              className="rounded-full bg-lavender px-4 py-2 text-[0.85rem] font-semibold text-black transition-colors hover:bg-lime"
             >
               Add referral
             </button>
@@ -196,6 +194,7 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
       )}
       {editing?.kind === "educator" && (
         <Modal title={editing.educator ? "Edit educator" : "Add educator"} onClose={() => setEditing(null)}>
+          {editing.first && <p className="t-body mt-3 text-black/70">A referral needs an educator to belong to. Add the educator and their promo code first, then add the referral.</p>}
           <EducatorForm educator={editing.educator} onDone={() => setEditing(null)} />
         </Modal>
       )}
