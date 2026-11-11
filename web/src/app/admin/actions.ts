@@ -4,7 +4,7 @@ import { refresh } from "next/cache";
 import { headers } from "next/headers";
 import { db } from "@/lib/admin/db";
 import { endSession, isSignedIn, passwordMatches, startSession } from "@/lib/admin/session";
-import { todayInHouston } from "@/lib/admin/referrals";
+import { tierCentsFor, todayInHouston } from "@/lib/admin/referrals";
 import { getWixPerson, hasWixKey, listCouponOrders, normalizeCode } from "@/lib/admin/wix-orders";
 
 export interface ActionResult {
@@ -116,21 +116,33 @@ export async function saveReferral(_prev: ActionResult, form: FormData): Promise
   if (!["applied", "enrolled", "withdrawn"].includes(status)) return fail("Choose a status.");
   if (appliedOn === undefined || classStart === undefined || paidOn === undefined) return fail("One of the dates is not valid.");
   if (payoutCents === undefined) return fail("Enter the payout as a dollar amount, like 150.");
-  if (paidOn && payoutCents === null) return fail("Add the payout amount before marking it paid.");
 
   const email = optional(form, "studentEmail");
   const phone = optional(form, "studentPhone");
   const notes = optional(form, "notes");
   const sql = await db();
+  let savedId = id;
   if (id) {
     await sql`
       UPDATE referrals SET educator_id = ${educatorId}, student_name = ${studentName}, student_email = ${email}, student_phone = ${phone},
         applied_on = ${appliedOn}, class_start = ${classStart}, status = ${status}, payout_cents = ${payoutCents}, paid_on = ${paidOn}, notes = ${notes}
       WHERE id = ${id}`;
   } else {
-    await sql`
+    const [row] = await sql`
       INSERT INTO referrals (educator_id, student_name, student_email, student_phone, applied_on, class_start, status, payout_cents, paid_on, notes)
-      VALUES (${educatorId}, ${studentName}, ${email}, ${phone}, ${appliedOn}, ${classStart}, ${status}, ${payoutCents}, ${paidOn}, ${notes})`;
+      VALUES (${educatorId}, ${studentName}, ${email}, ${phone}, ${appliedOn}, ${classStart}, ${status}, ${payoutCents}, ${paidOn}, ${notes})
+      RETURNING id`;
+    savedId = row.id as number;
+  }
+  // A paid referral keeps the amount it was paid at, even if the educator's tier changes later.
+  if (paidOn && payoutCents === null && savedId) {
+    const tier = await tierCentsFor(savedId);
+    if (tier === null) {
+      await sql`UPDATE referrals SET paid_on = NULL WHERE id = ${savedId}`;
+      refresh();
+      return fail("Saved, but not marked paid. Add the payout amount first.");
+    }
+    await sql`UPDATE referrals SET payout_cents = ${tier} WHERE id = ${savedId}`;
   }
   refresh();
   return done("Saved.");
@@ -141,7 +153,12 @@ export async function markPaid(_prev: ActionResult, form: FormData): Promise<Act
   const id = Number(text(form, "id"));
   if (!id) return fail("Referral not found.");
   const sql = await db();
-  const updated = await sql`UPDATE referrals SET paid_on = ${todayInHouston()} WHERE id = ${id} AND payout_cents IS NOT NULL AND paid_on IS NULL RETURNING id`;
+  // Freeze the tier amount at the moment of payment so it never shifts afterwards.
+  const tier = await tierCentsFor(id);
+  const updated = await sql`
+    UPDATE referrals SET paid_on = ${todayInHouston()}, payout_cents = coalesce(payout_cents, ${tier})
+    WHERE id = ${id} AND paid_on IS NULL AND coalesce(payout_cents, ${tier}) IS NOT NULL
+    RETURNING id`;
   if (updated.length === 0) return fail("Add the payout amount first, then mark it paid.");
   refresh();
   return done("Marked paid.");

@@ -8,7 +8,7 @@ Everything below is either mock content or an unresolved contradiction found on 
 | --- | --- | --- | --- |
 | 1 | Core / Specialty / Complete program details | `web/src/content/en.ts` and `es.ts`, `pages.programs` | Names, what each tier includes, hours, exact days, and whether all three lead to the 600-hour license. Current copy is a reasonable draft only. |
 | 2 | Tuition per program | `web/src/config/tuition.ts` | Done November 5, 2026 from Gen's price sheet. See "Tuition pricing" below. |
-| 3 | Next class start and enrollment deadline | `web/src/config/site.ts`, `enrollment` | Set to November 30, 2026 and November 20, 2026. One edit updates the announcement bar, hero, CTAs and both languages. |
+| 3 | Next class start and enrollment deadline | `web/src/config/site.ts`, `enrollment` | Set to January 11, 2027 and December 28, 2026. One edit updates the announcement bar, hero, CTAs and both languages. |
 | 4 | Mia Curry's bio | `pages.team.members[2].bio` | The live website shows Rayven's bio under Mia's name. A short draft is in place and flagged with a visible "placeholder" note. |
 | 5 | Privacy Policy | `pages.privacy.sections` | The live website's privacy page is empty. A short draft is in place with a visible "draft" note. |
 | 6 | Application URL | `web/src/lib/wix.ts`, `apply` | The current site's apply button is JavaScript-driven; we link to `/apply` on Wix. Confirm the exact page students should land on. |
@@ -24,7 +24,7 @@ Everything below is either mock content or an unresolved contradiction found on 
 - The waitlist is now a native form (program of interest: Core, Specialty, Complete or Undecided; how they heard about us; typed signature). Questions email is contact@thanailartistry.com.
 - New Admissions Readiness Assessment at `/readiness-assessment`, built from Gen's PDF spec: 10 questions one at a time, hidden scoring on questions 1 to 4, confirmation screen that sends people to Book a Tour. Book a Tour prompts people to take it first. Linked from the More menu.
 - Both forms submit through Web3Forms (key in `NEXT_PUBLIC_WEB3FORMS_KEY`). The free plan emails the admissions inbox but cannot send the applicant an auto-reply; the on-screen confirmation covers that. Upgrading to Web3Forms Pro adds the auto-reply if Gen wants it.
-- Dates set November 4, 2026: enrollment deadline November 20, 2026, first day of class November 30, 2026 (`enrollment` in `web/src/config/site.ts`).
+- Dates updated November 11, 2026 (Gen): enrollment deadline December 28, 2026, first day of class January 11, 2027 (`enrollment` in `web/src/config/site.ts`).
 - Every Apply Now on the site now starts the readiness assessment. The only link that opens the Wix application directly is the Apply Now in the black announcement bar. The Apply page lists the six updated enrollment steps from Gen's Wix page.
 - Gen's own work photos (ten sets) live in `web/public/images/work/gen/` and show under View My Work on the founder page only.
 

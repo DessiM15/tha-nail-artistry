@@ -32,6 +32,11 @@ function formatMoney(cents: number | null): string {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: cents % 100 === 0 ? 0 : 2 }).format(cents / 100);
 }
 
+/** What the educator is owed for this referral: the amount typed in, or the tier amount. */
+function payoutOf(r: Referral): number | null {
+  return r.payoutCents ?? r.tierCents;
+}
+
 function stageLabel(r: Referral): string {
   switch (r.stage) {
     case "applied": return "Applied";
@@ -60,7 +65,7 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
   const [wix, runWixCheck, checkingWix] = useActionState(checkWix, idle);
 
   const due = referrals.filter((r) => r.stage === "due");
-  const dueTotal = due.reduce((sum, r) => sum + (r.payoutCents ?? 0), 0);
+  const dueTotal = due.reduce((sum, r) => sum + (payoutOf(r) ?? 0), 0);
   const counts: Record<Filter, number> = {
     all: referrals.length,
     due: due.length,
@@ -82,7 +87,7 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
           <div>
             <h1 id="referrals-heading" className="t-h2">Referrals</h1>
             <p className="t-body mt-2 max-w-2xl text-black/70">
-              An educator earns a payout once their student has been enrolled for {waitDays} days after class starts.
+              An educator earns a payout once their student has been enrolled for {waitDays} days after class starts. The amount follows the tier the educator has reached.
               {due.length > 0 && (
                 <strong className="font-semibold text-black">
                   {" "}{due.length} {due.length === 1 ? "payout is" : "payouts are"} due now{dueTotal > 0 ? `, ${formatMoney(dueTotal)} in total` : ""}.
@@ -161,8 +166,8 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
           <ul className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {educators.map((e) => {
               const theirs = referrals.filter((r) => r.educatorId === e.id);
-              const owed = theirs.filter((r) => r.stage === "due").reduce((s, r) => s + (r.payoutCents ?? 0), 0);
-              const paid = theirs.filter((r) => r.stage === "paid").reduce((s, r) => s + (r.payoutCents ?? 0), 0);
+              const owed = theirs.filter((r) => r.stage === "due").reduce((s, r) => s + (payoutOf(r) ?? 0), 0);
+              const paid = theirs.filter((r) => r.stage === "paid").reduce((s, r) => s + (payoutOf(r) ?? 0), 0);
               return (
                 <li key={e.id} className="rounded-3xl bg-white p-5 ring-1 ring-black/10">
                   <div className="flex items-start justify-between gap-3">
@@ -174,8 +179,11 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
                   </div>
                   {(e.email || e.phone) && <p className="mt-3 break-words text-[0.85rem] text-black/70">{[e.email, e.phone].filter(Boolean).join(" · ")}</p>}
                   <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[0.85rem]">
-                    <div><dt className="text-black/60">Referrals</dt><dd className="font-semibold">{e.referralCount}</dd></div>
-                    <div><dt className="text-black/60">Last {tierMonths} months</dt><dd className="font-semibold">{e.recentCount}</dd></div>
+                    <div className="col-span-2"><dt className="text-black/60">Tier</dt><dd className="font-semibold">{e.tierName}</dd></div>
+                    <div><dt className="text-black/60">Enrolled, last {tierMonths} months</dt><dd className="font-semibold">{e.recentCount}</dd></div>
+                    <div><dt className="text-black/60">Next referral earns</dt><dd className="font-semibold">{formatMoney(e.nextPayoutCents)}</dd></div>
+                    <div><dt className="text-black/60">All referrals</dt><dd className="font-semibold">{e.referralCount}</dd></div>
+                    <div aria-hidden="true" />
                     <div><dt className="text-black/60">Due now</dt><dd className="font-semibold">{formatMoney(owed) || "$0"}</dd></div>
                     <div><dt className="text-black/60">Paid so far</dt><dd className="font-semibold">{formatMoney(paid) || "$0"}</dd></div>
                   </dl>
@@ -220,7 +228,7 @@ function ReferralRow({ referral: r, onEdit }: { referral: Referral; onEdit: () =
         <div><dt className="text-black/60">Applied</dt><dd className="font-semibold">{formatDate(r.appliedOn) || "Not set"}</dd></div>
         <div><dt className="text-black/60">Class starts</dt><dd className="font-semibold">{formatDate(r.classStart) || "Not set"}</dd></div>
         <div><dt className="text-black/60">30 days are up</dt><dd className="font-semibold">{formatDate(r.eligibleOn) || "Needs a start date"}</dd></div>
-        <div><dt className="text-black/60">Payout</dt><dd className="font-semibold">{formatMoney(r.payoutCents) || "Not set"}</dd></div>
+        <div><dt className="text-black/60">Payout</dt><dd className="font-semibold">{formatMoney(payoutOf(r)) || (r.status === "enrolled" ? "Not set" : "Set once enrolled")}</dd></div>
       </dl>
 
       {(r.studentEmail || r.studentPhone) && <p className="mt-3 break-words text-[0.85rem] text-black/70">{[r.studentEmail, r.studentPhone].filter(Boolean).join(" · ")}</p>}
@@ -316,8 +324,8 @@ function ReferralForm({ referral: r, educators, today, nextClassStart, waitDays,
           )}
         </div>
         <div>
-          <Label htmlFor="payout">Payout amount</Label>
-          <TextInput id="payout" name="payout" inputMode="decimal" placeholder="150" defaultValue={r?.payoutCents != null ? String(r.payoutCents / 100) : ""} autoComplete="off" />
+          <Label htmlFor="payout" hint={r?.paidOn ? undefined : "Leave blank to use the tier amount."}>Payout amount</Label>
+          <TextInput id="payout" name="payout" inputMode="decimal" placeholder={r?.tierCents != null ? String(r.tierCents / 100) : "Tier amount"} defaultValue={r?.payoutCents != null ? String(r.payoutCents / 100) : ""} autoComplete="off" />
         </div>
         <div>
           <Label htmlFor="paidOn">Paid on</Label>
