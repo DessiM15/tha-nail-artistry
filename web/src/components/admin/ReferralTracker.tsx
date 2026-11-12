@@ -87,7 +87,7 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
           <div>
             <h1 id="referrals-heading" className="t-h2">Referrals</h1>
             <p className="t-body mt-2 max-w-2xl text-black/70">
-              An educator earns a payout once their student has been enrolled for {waitDays} days after class starts. The amount follows the tier the educator has reached.
+              A referral qualifies once the student has started class and stayed enrolled for {waitDays} days. The payout follows the tier the educator has reached, and a higher tier only applies to later referrals.
               {due.length > 0 && (
                 <strong className="font-semibold text-black">
                   {" "}{due.length} {due.length === 1 ? "payout is" : "payouts are"} due now{dueTotal > 0 ? `, ${formatMoney(dueTotal)} in total` : ""}.
@@ -180,10 +180,8 @@ export function ReferralTracker({ educators, referrals, today, nextClassStart, w
                   {(e.email || e.phone) && <p className="mt-3 break-words text-[0.85rem] text-black/70">{[e.email, e.phone].filter(Boolean).join(" · ")}</p>}
                   <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[0.85rem]">
                     <div className="col-span-2"><dt className="text-black/60">Tier</dt><dd className="font-semibold">{e.tierName}</dd></div>
-                    <div><dt className="text-black/60">Enrolled, last {tierMonths} months</dt><dd className="font-semibold">{e.recentCount}</dd></div>
-                    <div><dt className="text-black/60">Next referral earns</dt><dd className="font-semibold">{formatMoney(e.nextPayoutCents)}</dd></div>
+                    <div><dt className="text-black/60">Qualified, last {tierMonths} months</dt><dd className="font-semibold">{e.recentCount}</dd></div>
                     <div><dt className="text-black/60">All referrals</dt><dd className="font-semibold">{e.referralCount}</dd></div>
-                    <div aria-hidden="true" />
                     <div><dt className="text-black/60">Due now</dt><dd className="font-semibold">{formatMoney(owed) || "$0"}</dd></div>
                     <div><dt className="text-black/60">Paid so far</dt><dd className="font-semibold">{formatMoney(paid) || "$0"}</dd></div>
                   </dl>
@@ -228,7 +226,11 @@ function ReferralRow({ referral: r, onEdit }: { referral: Referral; onEdit: () =
         <div><dt className="text-black/60">Applied</dt><dd className="font-semibold">{formatDate(r.appliedOn) || "Not set"}</dd></div>
         <div><dt className="text-black/60">Class starts</dt><dd className="font-semibold">{formatDate(r.classStart) || "Not set"}</dd></div>
         <div><dt className="text-black/60">30 days are up</dt><dd className="font-semibold">{formatDate(r.eligibleOn) || "Needs a start date"}</dd></div>
-        <div><dt className="text-black/60">Payout</dt><dd className="font-semibold">{formatMoney(payoutOf(r)) || (r.status === "enrolled" ? "Not set" : "Set once enrolled")}</dd></div>
+        <div><dt className="text-black/60">Payout</dt><dd className="font-semibold">
+            {formatMoney(payoutOf(r))
+              ? `${formatMoney(payoutOf(r))}${r.stage === "waiting" && r.payoutCents === null ? " expected" : ""}`
+              : r.status === "enrolled" ? "Needs a start date" : "Set once enrolled"}
+          </dd></div>
       </dl>
 
       {(r.studentEmail || r.studentPhone) && <p className="mt-3 break-words text-[0.85rem] text-black/70">{[r.studentEmail, r.studentPhone].filter(Boolean).join(" · ")}</p>}
